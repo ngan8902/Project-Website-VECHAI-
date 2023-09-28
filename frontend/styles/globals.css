@@ -1,0 +1,107 @@
+/*Dành cho điện thoại*/
+@media all and (max-width: 480px) {}
+
+/*Dành cho máy tính bảng*/
+@media all and (max-width: 1024px) {}
+
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 1025vw;
+  overflow-x: hidden;
+  font-family: math;
+  background-color: rgb(246, 238, 238);
+}
+
+li {
+  padding: 10px;
+  margin-top: 5px;
+  height: 40px;
+  min-width: 80px;
+}
+
+li:hover {
+  color: rgba(241, 240, 240, 0.655);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  display: inherit;
+  padding: 10px 0 5px 5px;
+  font-family: monospace;
+}
+
+a:hover {
+  color: rgb(34, 27, 167);
+  background-color: #f5f0f0b5;
+}
+
+.dropdow:hover .drop {
+  display: block !important;
+}
+
+h1 {
+  font-size: 3.5rem;
+}
+
+h4{
+  color: #070a73;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+p {
+  font-size: 1rem;
+  padding-top: 10px;
+}
+
+button {
+  border: none;
+  height: 30px;
+  width: 80px;
+  color: white;
+  background-color: rgba(63, 94, 251, 0.912);
+  margin-left: 15px;
+  margin-top: 5px;
+  height: 40px;
+  min-width: 80px;
+  font-family: math;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: rgba(63, 94, 251, 0.708);
+
+}
+
+.grid-container {
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+  margin: 160px;
+  text-align: -webkit-center;
+  
+}
+
+
+
+
+/*
+body {
+ 
+}
+
+
+
+@media (prefers-color-scheme: dark) {
+  html {
+    color-scheme: dark;
+  }
+} */
