@@ -35,7 +35,7 @@ export default function Home() {
           </div>
           <li><Link className={styles.linknav} href="#">Sản Phẩm</Link></li>
           <li><Link className={styles.linknav} href="#">Giới Thiệu</Link></li>
-          <li className={styles.dn}><Link className={styles.linknav} href="#">Đăng Nhập</Link></li>
+          <li className={styles.dn}><Link className={styles.linknav} href="/Login">Đăng Nhập</Link></li>
           <button>Dùng Thử</button>
         </ul>
       </div>

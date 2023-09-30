@@ -90,7 +90,19 @@ button:hover {
   
 }
 
-
+.btn-đn{
+  background: rgb(63, 94, 251);
+  background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(255, 69, 107, 1) 100%);  border: none;
+  border-radius: 8px;
+  height: 1.75rem;
+  font-size: 1rem;
+  color: white;
+  justify-items: center;
+}
+.btn-đn:hover{
+  background: rgba(63, 94, 251, 0.842);
+  background: linear-gradient(90deg, rgba(63, 94, 251, 0.688) 0%, rgba(255, 69, 106, 0.699) 100%);  border: none;
+} 
 
 
 /*

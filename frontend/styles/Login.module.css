@@ -1,0 +1,33 @@
+.Login {
+    background-color: white;
+    border-radius: 15px;
+    padding: 20px;
+    width: 50%;
+    position: absolute;
+    margin: 10%;
+    margin-left: 25%;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.textLogin {
+    font-family: 'Montserrat';
+    font-size: 2.8rem;
+    -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    background: rgb(63, 94, 251);
+    background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(255, 69, 107, 1) 100%);    text-align: center;
+    background-clip: text;
+}
+
+.fromLable{
+    color: red;
+}
+
+.dktk{
+    color: rgb(51, 51, 235);
+    font-family: math;
+}
+
+.dktk:hover{
+    background: none;
+}
