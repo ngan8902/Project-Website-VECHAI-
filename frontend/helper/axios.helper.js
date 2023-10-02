@@ -1,5 +1,5 @@
 const axios = require("axios")
 
 module.exports = axios.create({
-    baseURL: process.env('SERVERHOST')
+    baseURL: process.env['SERVERHOST']
 })
