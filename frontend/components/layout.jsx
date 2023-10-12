@@ -1,16 +1,46 @@
 import Link from 'next/link';
 import Script from 'next/script';
 import { useState } from 'react';
-import { BsSun, BsFillMoonStarsFill, BsFillBellFill, BsFillGridFill } from "react-icons/bs"
+import {
+    BsSun,
+    BsFillMoonStarsFill,
+    BsFillBellFill,
+    BsHouseDoorFill,
+    BsFillPostcardHeartFill,
+    BsPersonLinesFill,
+    BsShop,
 
+} from "react-icons/bs"
 
+import style from '@/styles/Dashboard.module.css'
 
 export default function Layout({ children }) {
     const [navs, setNavs] = useState([{
         key: "dashboard",
         name: "Trang chủ",
-        icon: <BsFillGridFill />,
-        href: "/Login"
+        icon: <BsHouseDoorFill />,
+        href: "/dashboard"
+    }])
+
+    const [post, Setpost] = useState([{
+        key: "dashboard",
+        name: "Bài đăng",
+        icon: <BsFillPostcardHeartFill />,
+        href: "/dashboard"
+    }])
+
+    const [buyer, Setbuyer] = useState([{
+        key: "dashboard",
+        name: "Người mua ve chai",
+        icon: <BsPersonLinesFill />,
+        href: "/dashboard"
+    }])
+
+    const [yard, Setyard] = useState([{
+        key: "dashboard",
+        name: "Các vựa ve chai",
+        icon: <BsShop />,
+        href: "/dashboard"
     }])
 
     const handelLogout = () => {
@@ -32,19 +62,58 @@ export default function Layout({ children }) {
                 <div class="sidebar flex-c flex-sb">
                     <div class="brand">VeChai</div>
                     <div class="side-nav">
-                        
-                    {navs.map((nav, index) => {
-                        return(
-                             <div class="menu-item flex active">
-                                <Link href={nav.href}>
-                            <div class="icon">
-                                <BsFillGridFill />
-                            </div>
-                            <p>{nav.name}</p>
-                            </Link>
-                        </div> 
-                        )
-                    })}
+
+                        {navs.map((nav, index) => {
+                            return (
+                                <div class="menu-item flex active">
+                                    <Link className={style.navcontent} href={nav.href}>
+                                        <div class="icon">
+                                            <BsHouseDoorFill />
+                                        </div>
+                                        <p>{nav.name}</p>
+                                    </Link>
+                                </div>
+                            )
+                        })}
+
+                        {post.map((nav, index) => {
+                            return (
+                                <div class="menu-item flex active">
+                                    <Link className={style.navcontent} href={nav.href}>
+                                        <div class="icon">
+                                            <BsFillPostcardHeartFill />
+                                        </div>
+                                        <p>{nav.name}</p>
+                                    </Link>
+                                </div>
+                            )
+                        })}
+
+                        {buyer.map((nav, index) => {
+                            return (
+                                <div class="menu-item flex active">
+                                    <Link className={style.navcontent} href={nav.href}>
+                                        <div class="icon">
+                                            <BsPersonLinesFill />
+                                        </div>
+                                        <p>{nav.name}</p>
+                                    </Link>
+                                </div>
+                            )
+                        })}
+
+                        {yard.map((nav, index) => {
+                            return (
+                                <div class="menu-item flex active">
+                                    <Link className={style.navcontent} href={nav.href}>
+                                        <div class="icon">
+                                            <BsShop />
+                                        </div>
+                                        <p>{nav.name}</p>
+                                    </Link>
+                                </div>
+                            )
+                        })}
                     </div>
                     <div class="log-out">
                         <div class="menu-item flex" onClick={handelLogout}>
@@ -66,7 +135,7 @@ export default function Layout({ children }) {
                             <div class="icon">
                                 <ion-icon name="search-outline"></ion-icon>
                             </div>
-                            <input type="text" placeholder=" Search any collection" />
+                            <input type="text" placeholder=" Tìm kiếm ..." />
                         </div>
 
                         <div class="theme flex">
@@ -87,13 +156,12 @@ export default function Layout({ children }) {
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
                             />
-                            <p>Hassnain</p>
+                            <p>Bich Ngan</p>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </div>
                     </div>
                     {children}
                     {/* <!-- ======End Topbar======= --> */}
-                    {/* <!-- End Dashboard Content --> */}
                 </div>
             </div>
 

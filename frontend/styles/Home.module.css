@@ -115,10 +115,31 @@
   height: 40px;
   min-width: 80px;
   font-family: math;
+  color: inherit;
+  text-decoration: none;
+  display: inherit;
+  padding: 10px 0 5px 5px;
 }
 
 .linknav:hover {
   color: rgba(241, 240, 240, 0.655);
+  background: none !important;
+}
+
+.linknavdn{
+  padding: 10px;
+  margin-top: -12px;
+  height: 40px;
+  min-width: 80px;
+  font-family: math;
+  color: inherit;
+  text-decoration: none;
+  display: inherit;
+  padding: 10px 0 5px 5px;
+}
+
+.linknavdn:hover {
+  color: rgba(58, 54, 54, 0.655);
   background: none !important;
 }
 
@@ -170,19 +191,27 @@
 
 .iconContent {
   cursor: pointer;
-  padding-right: 10px;
   color: black;
+  margin-top: -12px;
+  height: 40px;
+  min-width: 40px;
+  font-family: math;
+  text-decoration: none;
+  display: inherit;
 }
 
 .iconContent:hover {
   background: none;
-  color: rgb(69, 147, 236);
+  color: rgb(99, 103, 107);
 }
 
 .btdt {
   font-family: math;
-  padding-right: 5px;
   line-height: 22px;
+  color: inherit;
+  text-decoration: none;
+  display: inherit;
+  padding: 5px;
 }
 
 .btdt:hover {
@@ -226,4 +255,12 @@
   border: 3px solid rgb(251, 63, 76);
   background: rgb(251, 63, 76);
   color: rgb(21, 20, 20);
+}
+
+.icondrop{
+  color: inherit;
+  text-decoration: none;
+  display: inherit;
+  padding: 10px 0 5px 5px;
+  font-family: math;
 }

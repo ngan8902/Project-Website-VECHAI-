@@ -1,15 +1,12 @@
 import Head from 'next/head';
-import Script from 'next/script';
-import Link from 'next/link';
-import { useState } from 'react';
-import axios from 'axios';
-import { BsSun, BsFillMoonStarsFill, BsFillBellFill, BsFillGridFill } from "react-icons/bs"
 import Layout from '@/components/layout';
 import dynamic from 'next/dynamic';
+import Link from 'next/link';
+import { FcShop, FcNews } from 'react-icons/fc'
 
 
 export default function Dashboard() {
-    const Map = dynamic(() => import("@/components/map"),{
+    const Map = dynamic(() => import("@/components/map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
     });
@@ -24,37 +21,19 @@ export default function Dashboard() {
         </Head>
         <main>
             <Layout>
-
-
-
                 {/* <!-- ======Section======= --> */}
                 <div class="section flex flex-sb">
                     {/* <!-- Section Left --> */}
                     <div class="section-left">
-                        <Map></Map>
                         {/* <!-- ======Banner======= --> */}
-                        <div class="banner flex flex-sb">
-                            <div class="text">
-                                <h2>
-                                    Dicover and sell <br />
-                                    your own NFTs
-                                </h2>
-
-                                <a href="#" class="btn">
-                                    Discover Now
-                                </a>
-                            </div>
-
-                            <img
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/banner.svg"
-                                alt=""
-                            />
+                        <div>
+                            <Map></Map>
                         </div>
 
                         <div class="nfts">
                             <div class="trending heading flex flex-sb">
-                                <h2>Trending NFTs</h2>
-                                <p>See all</p>
+                                <h2>Bài đăng về ve chai cần bán</h2>
+                                <p>Xem thêm</p>
                             </div>
 
                             {/* <!-- ======Categories======= --> */}
@@ -62,123 +41,42 @@ export default function Dashboard() {
                             <div class="categories flex flex-sb">
                                 <div class="category flex">
                                     <div class="icon">🔥</div>
-                                    <p>Trending</p>
+                                    <p>Tin nổi bật</p>
                                 </div>
 
                                 <div class="category flex">
-                                    <div class="icon">🎨</div>
-                                    <p>Art</p>
+                                    <FcNews style={{ marginRight: '10px' }} class='icon' />
+                                    <p>Bảng tin</p>
                                 </div>
 
                                 <div class="category flex">
                                     <div class="icon">🕹️</div>
-                                    <p>Game</p>
+                                    <p>Gần bạn</p>
                                 </div>
 
                                 <div class="category flex">
-                                    <div class="icon">👗</div>
-                                    <p>Fashion</p>
-                                </div>
-
-                                <div class="category flex">
-                                    <div class="icon">🎵</div>
-                                    <p>Music</p>
+                                    <FcShop style={{ marginRight: '10px' }} class='icon' />
+                                    <p>Các vựa</p>
                                 </div>
                             </div>
 
-                            {/* <!-- =====Browse NFT===== --> */}
-                            <div class="browse">
-                                <div class="nft">
-                                    <img
-                                        src="#"
-                                        alt=""
-                                    />
-                                    <div class="title">Weary Artwork</div>
-                                    <div class="details flex flex-sb">
-                                        <div class="author flex">
-                                            <img
-                                                src="#"
-                                                alt=""
-                                            />
-                                            <p>Hassnain Haider</p>
-                                        </div>
-                                        <div class="price">4.5 ETH</div>
-                                    </div>
-                                </div>
-
-                                <div class="nft">
-                                    <img
-                                        src="#"
-                                        alt=""
-                                    />
-                                    <div class="title">Spectrum of Color</div>
-                                    <div class="details flex flex-sb">
-                                        <div class="author flex">
-                                            <img
-                                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                                alt=""
-                                            />
-                                            <p>Hassnain Haider</p>
-                                        </div>
-                                        <div class="price">4 ETH</div>
-                                    </div>
-                                </div>
-
-                                <div class="nft">
-                                    <img
-                                        src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-3.jpg"
-                                        alt=""
-                                    />
-                                    <div class="title">Vivid Artwork</div>
-                                    <div class="details flex flex-sb">
-                                        <div class="author flex">
-                                            <img
-                                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                                alt=""
-                                            />
-                                            <p>Hassnain Haider</p>
-                                        </div>
-                                        <div class="price">3.5 ETH</div>
-                                    </div>
-                                </div>
-
-                                <div class="nft">
-                                    <img
-                                        src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-4.jpg"
-                                        alt=""
-                                    />
-                                    <div class="title">Nature's Love</div>
-                                    <div class="details flex flex-sb">
-                                        <div class="author flex">
-                                            <img
-                                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                                alt=""
-                                            />
-                                            <p>Hassnain Haider</p>
-                                        </div>
-                                        <div class="price">5 ETH</div>
-                                    </div>
-                                </div>
-                            </div>
                         </div>
                     </div>
 
                     {/* <!-- Section Right --> */}
                     <div class="section-right">
-                        <div class="graph flex-c">
-                            <p>Balance</p>
-                            <h2>93,565.00</h2>
 
-                            <img
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/graph.svg"
-                                alt=""
-                            />
+                        <div class="top-yards">
+                            <div class="heading flex flex-sb">
+                                <h2>Top Vựa Ve Chai</h2>
+                                <p style={{ fontSize: '1rem' }}>Xem thêm</p>
+                            </div>
+
                         </div>
-
                         <div class="top-creators">
                             <div class="heading flex flex-sb">
-                                <h2>Top Creators</h2>
-                                <p>See all</p>
+                                <h2>Top Thu Mua</h2>
+                                <p style={{ fontSize: '1rem' }}>Xem thêm</p>
                             </div>
 
                             <div class="creator flex flex-sb">
@@ -188,13 +86,30 @@ export default function Dashboard() {
                                         alt=""
                                     />
                                     <div class="creator-details">
-                                        <h3>Hassnain Haider</h3>
-                                        <p>@hassnain</p>
+                                        <h3>Huy Nguyễn</h3>
+                                        <p>@huynguyen</p>
                                     </div>
                                 </div>
 
                                 <a href="#" class="btn following">
-                                    Following
+                                    Đang theo
+                                </a>
+                            </div>
+
+                            <div class="creator flex flex-sb">
+                                <div class="follow-creator flex">
+                                    <img
+                                        src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                        alt=""
+                                    />
+                                    <div class="creator-details">
+                                        <h3>Ngân Nguyễn</h3>
+                                        <p>@bichngan</p>
+                                    </div>
+                                </div>
+
+                                <a href="#" class="btn follow following">
+                                    Theo dõi
                                 </a>
                             </div>
 
@@ -211,7 +126,7 @@ export default function Dashboard() {
                                 </div>
 
                                 <a href="#" class="btn follow following">
-                                    Follow
+                                    Theo dõi
                                 </a>
                             </div>
 
@@ -228,7 +143,7 @@ export default function Dashboard() {
                                 </div>
 
                                 <a href="#" class="btn follow following">
-                                    Follow
+                                    Theo dõi
                                 </a>
                             </div>
 
@@ -245,7 +160,7 @@ export default function Dashboard() {
                                 </div>
 
                                 <a href="#" class="btn follow following">
-                                    Follow
+                                    Theo dõi
                                 </a>
                             </div>
 
@@ -262,24 +177,7 @@ export default function Dashboard() {
                                 </div>
 
                                 <a href="#" class="btn follow following">
-                                    Follow
-                                </a>
-                            </div>
-
-                            <div class="creator flex flex-sb">
-                                <div class="follow-creator flex">
-                                    <img
-                                        src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                        alt=""
-                                    />
-                                    <div class="creator-details">
-                                        <h3>Hassnain Haider</h3>
-                                        <p>@hassnain</p>
-                                    </div>
-                                </div>
-
-                                <a href="#" class="btn follow following">
-                                    Follow
+                                    Theo dõi
                                 </a>
                             </div>
                         </div>
