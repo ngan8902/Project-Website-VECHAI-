@@ -87,7 +87,7 @@ button:hover {
   display: flex;
   flex-wrap: nowrap;
   justify-content: center;
-  margin: 160px;
+  margin: 100px;
   margin-top: 5%;
   text-align: -webkit-center;
 
@@ -372,6 +372,42 @@ body {
   cursor: pointer;
 }
 
+.post{
+  background: white;
+  width: 503px;
+  height: 800px;
+  margin-left: 10%;
+  transition: 0.3s linear;
+  border-radius: 15px;
+  padding: 1px;
+}
+
+.btn_cm{
+  padding: 1%;
+  text-align: center;
+  height: 0px;
+  width: 30%;
+  padding-bottom: 7%;
+  margin: 3px 2%;
+  background: none;
+  color: black;
+  border-radius: 10px;
+}
+
+.btn_cm:hover{
+  background: rgb(196, 194, 194);
+}
+
+.cmt{
+  height: 35px;
+  padding: 5px 10px;
+  border-radius: 10px;
+  width: 400px;
+  margin-top: 9px;
+  background: white;
+}
+
+
 /* =====Section======= */
 
 .section {
@@ -646,19 +682,29 @@ body {
 .darkMode .search input,
 .darkMode .user,
 .darkMode .theme,
-.darkMode .notification {
+.darkMode .notification
+{
   background: #161622;
 }
 
 .darkMode .user,
 .darkMode .notification,
-.darkMode .heading h2 {
+.darkMode .heading h2,
+.darkMode .btn_cm,
+.darkMode .post p {
   color: #fff;
 }
 
+.darkMode .btn_cm:hover{
+  background: rgb(73, 72, 72);
+}
+
 .darkMode .dark.active,
-.darkMode .light.active {
+.darkMode .light.active,
+.darkMode .cmt
+ {
   background: #1e1e2d;
+  border: none;
 }
 
 .darkMode .banner {
@@ -674,7 +720,8 @@ body {
   color: #161622;
 }
 
-.darkMode .category {
+.darkMode .category,
+.darkMode .post {
   color: #fff;
   background: #161622;
 }

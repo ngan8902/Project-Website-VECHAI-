@@ -123,7 +123,6 @@
 
 .linknav:hover {
   color: rgba(241, 240, 240, 0.655);
-  background: none !important;
 }
 
 .linknavdn{
@@ -140,7 +139,6 @@
 
 .linknavdn:hover {
   color: rgba(58, 54, 54, 0.655);
-  background: none !important;
 }
 
 .content1 {
@@ -263,4 +261,8 @@
   display: inherit;
   padding: 10px 0 5px 5px;
   font-family: math;
+}
+
+.icondrop:hover{
+  background-color: #dfdada;
 }
