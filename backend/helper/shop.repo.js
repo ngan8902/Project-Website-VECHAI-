@@ -1,7 +1,7 @@
 'use strict'
 
 
-const { con } = require('./index')
+const { con } = require('../database/mysql')
 class ShopModel{
 
     static getShopById = async (id) => {

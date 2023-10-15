@@ -2,11 +2,12 @@ import Axios from '@/helper/axios.helper'
 
 class CustomerService {
 
-    static signUp = async (fullname, email, password) => {
+    static signUp = async (fullname, email, password, phonenumber, role_id) => {
         return Axios.post('/api/customer/signup', {
             email,
             password,
-            fullname
+            fullname,
+            phonenumber, role_id
         }).then((response) => {
             const { data } = response
             return data

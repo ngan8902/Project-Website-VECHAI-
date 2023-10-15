@@ -1,9 +1,10 @@
 const express = require("express");
 const cors = require('cors');
 const routes = require("./router");
-const mysqlDb = require('./model')
+const mysqlDb = require('./database/mysql')
 const app = express();
-const port = 8000;
+app.set('port', process.argv[2] || 8000);
+const port = process.env.PORT || app.get('port');
 const bodyParser = require('body-parser')
 const session = require('express-session');
 
@@ -13,22 +14,21 @@ app.use(express.json())
 
 app.use(cors())
 app.use(session({
-  resave: true, 
-  saveUninitialized: true, 
-  secret: '12345', 
+  resave: true,
+  saveUninitialized: true,
+  secret: '12345',
   cookie: { secure: false }
 }));
 app.use(bodyParser.json())
 
-app.use(express.urlencoded({extended: false}))
-app.all('/*', function(req, res, next) {
+app.use(express.urlencoded({ extended: false }))
+app.all('/*', function (req, res, next) {
   res.header("Access-Control-Allow-Origin", "*");
   res.header("Access-Control-Allow-Headers", "X-Requested-With");
   next();
 });
 
-app.use(express.static(__dirname + '/public/build'));
-console.log(__dirname + '/public/build')
+app.use(express.static(__dirname + '/public'));
 
 app.use("/api", routes);
 

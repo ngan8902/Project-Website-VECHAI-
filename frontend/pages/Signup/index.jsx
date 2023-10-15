@@ -1,5 +1,5 @@
 import Head from "next/head";
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import axios from 'axios'
 import { BsArrowReturnLeft } from "react-icons/bs"
 import Link from "next/link";
@@ -9,15 +9,32 @@ import styles2 from "@/styles/Home.module.css"
 
 export default function Signup() {
   const [customer, setCuctomer] = useState({})
+  const [roles, setRoles] = useState([])
+
+  useEffect(() => {
+    axios.get('/api/role').then((response) => {
+      const { data } = response
+      if (!data) return
+      console.log(data.data)
+      setRoles(data.data)
+    })
+
+    return () => {
+
+    }
+  }, [])
 
   const handleSignup = (e) => {
     console.log(customer)
+    //if(!customer.email || !customer.role_id || !customer.password || !customer.name) return
+
     axios.post('/api/customer/signup', customer).then((response) => {
       console.log(response)
-      const {data} = response
-      if(data.code == 200){
+      const { data } = response
+      if (data.code == 200) {
+        console.log("test")
         window.location.replace('/Login')
-      }else{
+      } else {
         console.log(err)
       }
     }).catch((err) => {
@@ -38,7 +55,7 @@ export default function Signup() {
       </div>
       <div>
         <ul className={styles2.list1}>
-          <li><Link className={styles2.linknav} href="/Home">
+          <li><Link className={styles2.linknav} href="/">
             <BsArrowReturnLeft style={{ marginRight: '5px' }} />Quay Về Trang Chủ</Link></li>
         </ul>
       </div>
@@ -61,11 +78,24 @@ export default function Signup() {
         />
       </div>
       <div className="form-outline mb-4">
-        <select name="user" id="user" style={{ border: '1px solid #dee2e6a3', height: '36px', borderRadius: '6px', color: 'GrayText' }}>
-          <option value="Người cần bán ve chai">Người cần bán ve chai</option>
-          <option value="Chủ vựa ve chai">Chủ vựa ve chai</option>
-          <option value="Người thu mua ve chai">Người thu mua ve chai</option>
-        </select>
+        {
+          (roles.length > 0) ? (
+            <select name="user" id="user"
+              onChange={(e) => setCuctomer({
+                ...customer,
+                role_id: e.target.value ? parseInt(e.target.value) : e.target.value
+              })}
+              style={{ border: '1px solid #dee2e6a3', width: '100%', height: '36px', borderRadius: '6px', color: 'GrayText' }}>
+              <option value=''>-Chọn Vai Trò-</option>
+              {
+                roles.map((role, index) => {
+                  return <option key={index} value={role.role_id}>{role.description}</option>
+                })
+              }
+            </select>
+          ) : 'Loading...'
+        }
+
       </div>
       <div className="form-outline mb-4">
         <input
@@ -80,6 +110,22 @@ export default function Signup() {
             }
           )}
           placeholder={"Địa chỉ Email"}
+        />
+      </div>
+
+      <div className="form-outline mb-4">
+        <input
+          type="text"
+          id="sdt"
+          className="form-control"
+          value={customer.phonenumber}
+          onChange={(e) => setCuctomer(
+            {
+              ...customer,
+              phonenumber: e.target.value
+            }
+          )}
+          placeholder={"Số điện thoại"}
         />
       </div>
 

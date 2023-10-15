@@ -1,0 +1,34 @@
+### GET roles
+GET http://localhost:8000/api/role/get
+content-type: application/json
+
+
+### Post Role
+POST  http://localhost:8000/api/role/create
+content-type: application/json
+
+{
+    "name": "saler",
+    "accessApp": "dashboard",
+    "description": "Người thua mua ve chai"
+}
+
+### Post Role
+POST  http://localhost:8000/api/role/create
+content-type: application/json
+
+{
+    "name": "buyer",
+    "accessApp": "dashboard",
+    "description": "Người bán ve chai"
+}
+
+### Post Role
+POST  http://localhost:8000/api/role/create
+content-type: application/json
+
+{
+    "name": "yard",
+    "accessApp": "dashboard",
+    "description": "Chủ vựa ve chai"
+}

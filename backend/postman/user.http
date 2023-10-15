@@ -1,0 +1,28 @@
+### POST Create customer
+POST http://localhost:8000/api/customer/signup
+content-type: application/json
+
+{
+    "email": "vechai@gmail.com",
+    "password": "123456",
+    "fullname": "VeChai Shop"
+}
+
+### POST Login customer
+POST http://localhost:8000/api/customer/login
+content-type: application/json
+
+{
+    "email": "bichnganb722@gmail.com",
+    "password": "12345"
+}
+
+### GET user data
+GET http://localhost:8000/api/customer/login
+content-type: application/json
+
+{
+    "email": "bichnganb722@gmail.com",
+    "password": "12345"
+}
+

@@ -1,0 +1,3 @@
+### GET roles
+GET http://localhost:3000/api/role
+content-type: application/json

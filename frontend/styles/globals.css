@@ -239,11 +239,21 @@ body {
 }
 
 .brand {
-  font-size: 24px;
+  font-size: 2rem;
   font-weight: 700;
   letter-spacing: 5px;
-  color: #1e1e2d;
   cursor: pointer;
+  background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(255, 69, 107, 1) 100%);
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
+}
+
+.decription{
+  font-size: 12px; 
+  padding: 10px; 
+  background: black;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .menu-item {
@@ -284,7 +294,7 @@ body {
 .dashboard-content {
   flex: 1;
   padding: 25px;
-  background: #f9f9f9;
+  background: #f9f9f96b;
   transition: 0.5s ease-out;
 }
 
@@ -354,11 +364,12 @@ body {
   margin: 0 6px;
 }
 
-.notification {
+.notification{
   background: #fff;
   padding: 10px;
   border-radius: 20px;
   margin-right: 20px;
+  cursor: pointer;
 }
 
 /* =====Section======= */
@@ -372,7 +383,6 @@ body {
 .section-left {
   flex: 1;
   padding: 15px;
-  margin-top: -222px;
 }
 
 .banner {
@@ -428,8 +438,12 @@ body {
 
 .heading p {
   font-size: 18px;
-  color: #38c947;
+  color: rgb(122, 64, 222);;
   cursor: pointer;
+}
+
+.heading p:hover {
+  text-decoration:underline;
 }
 
 /* =====Categories======= */
@@ -606,9 +620,14 @@ body {
 }
 
 .darkMode .menu-item:hover,
-.darkMode .menu-item.active,
-.darkMode .brand {
+.darkMode .menu-item.active{
   color: #fff;
+}
+
+.darkMode .decription{
+  background: white;
+  -webkit-text-fill-color: transparent;
+  -webkit-background-clip: text;
 }
 
 .darkMode .log-out .menu-item:hover {
