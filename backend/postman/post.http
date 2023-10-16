@@ -1,5 +1,5 @@
 ### GET roles
-GET http://localhost:8000/api/post/get?limit=5&offset=0
+GET http://localhost:8000/api/post/get?limit=2&offset=0
 content-type: application/json
 
 ### Post Role
@@ -8,7 +8,7 @@ content-type: application/json
 
 {
     "userId": 1,
-    "name": "Thanh lý ve chai cho gọn nhà v2",
+    "name": "Thanh lý ve chai",
     "content": "Tôi cần thanh lý tất cả linh kiện ve chai trong hình.",
     "image": "https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-3.jpg",
     "expect_price": null,

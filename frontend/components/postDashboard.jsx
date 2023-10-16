@@ -1,6 +1,8 @@
 import { useState, useEffect } from "react";
 import axios from 'axios'
 import Image from "next/image";
+import styles from '@/styles/Dashboard.module.css'
+import { BsHeart, BsChatText, BsChatSquareDots } from 'react-icons/bs'
 
 export default function PostDashboard({ posts = [] }) {
     const [data, setData] = useState(posts);
@@ -31,33 +33,75 @@ export default function PostDashboard({ posts = [] }) {
 
     return (
         <>
-            <div className="browse">
+            <div className='post'>
                 {
                     data.map((post, index) => {
                         return (
-                            <div className="nft" key={index}>
-                                <Image
-                                    loader={() => { return post.image }}
-                                    src="https://via.placeholder.com/500x500"
-                                    alt="Picture of the author"
-                                    width={500}
-                                    height={500}
-                                />
-                                <div className="title">{post.name}</div>
-                                <div className="details flex flex-sb">
-                                    <div className="author flex">
-                                        <Image
-                                            loader={() => { return post.userImage || "https://via.placeholder.com/100x100" }}
+                            <>
+                                <div className={styles.poster} key={index}>
+                                    <img className={styles.img}
+                                        src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                        alt=""
+                                    />
+                                    <p>{post.fullname}</p>
+                                </div>
+                                <p className='status'>{post.content}</p>
+                                <div className={styles.newsfeed}>
+                                    <div className={styles.newsfeed1}>
+                                        <Image className={styles.imgpost}
+                                            loader={() => { return post.image }}
                                             src="https://via.placeholder.com/100x100"
                                             alt="Picture of the author"
                                             width={500}
                                             height={500}
                                         />
-                                        <p>{post.fullname}</p>
+
+                                        {/* <Image className={styles.imgpost}
+                                            src={'/sanpham/catton.jpg'}
+                                            width={250}
+                                            height={250}
+                                        />
                                     </div>
-                                    <div className="price" style={{ fontSize: 10 }}>{formatMoney(post.expectPrice, 0) || 'Thương lượng'}</div>
+                                    <div className={styles.newsfeed1}>
+                                        <Image className={styles.imgpost}
+                                            src={'/sanpham/thungcatton.jpg'}
+                                            width={250}
+                                            height={250}
+                                        />
+
+                                        <Image className={styles.imgpost}
+                                            src={'/sanpham/chainhuapost.jpg'}
+                                            width={250}
+                                            height={250}
+                                        /> */}
+                                    </div>
+
+                                    <div className={styles.comment}>
+                                        <button className='btn_cm'>
+                                            <BsHeart />
+                                        </button>
+                                        <button className='btn_cm'>
+                                            <BsChatSquareDots />
+
+                                        </button>
+                                        <button className='btn_cm'>
+                                            <BsChatText />
+                                        </button>
+                                    </div>
+
+                                    <div className={styles.comment1}>
+                                        <img className={styles.img}
+                                            src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                            alt=""
+                                        />
+                                        <input className='cmt' placeholder='Viết bình luận...'>
+
+                                        </input>
+                                    </div>
+
                                 </div>
-                            </div>
+
+                            </>
                         );
                     })
                 }

@@ -1,16 +1,3 @@
-.navcontent {
-    font-family: math;
-    color: inherit;
-    text-decoration: none;
-    display: inherit;
-    padding: 10px;
-    font-family: math;
-    min-width: 100px;
-}
-
-.navcontent:hover {
-    color: grey;
-}
 
 .map{
     width: 650px;
@@ -30,7 +17,7 @@
 }
 
 .newsfeed{
-    margin-top: 20%;
+    margin-top: 5%;
 }
 
 .img{

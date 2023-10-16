@@ -256,6 +256,21 @@ body {
   -webkit-background-clip: text;
 }
 
+.navcontent {
+  font-family: math;
+  color: inherit;
+  text-decoration: none;
+  display: inherit;
+  padding: 10px;
+  font-family: math;
+  min-width: 100px;
+  color: black;
+}
+
+.navcontent:hover {
+  color: grey;
+}
+
 .menu-item {
   margin: 30px auto;
   font-weight: 400;
@@ -380,6 +395,12 @@ body {
   transition: 0.3s linear;
   border-radius: 15px;
   padding: 1px;
+}
+
+.status{
+  margin-left: 10px;
+  color: black;
+  font-size: 1rem;
 }
 
 .btn_cm{
@@ -580,8 +601,8 @@ body {
 }
 
 .top-yards{
-   width: 100%;
-    margin-top: 155%;
+    width: 100%;
+    /* margin-top: 155%; */
     padding: 15px;
     background: #fff;
     border-radius: 20px;
@@ -655,9 +676,12 @@ body {
   background: #161622;
 }
 
-.darkMode .menu-item:hover,
-.darkMode .menu-item.active{
+.darkMode .navcontent{
   color: #fff;
+}
+
+.darkMode .navcontent:hover{
+  color: grey;
 }
 
 .darkMode .decription{
@@ -691,7 +715,9 @@ body {
 .darkMode .notification,
 .darkMode .heading h2,
 .darkMode .btn_cm,
-.darkMode .post p {
+.darkMode .post p,
+.darkMode .status,
+.darkMode .cmt {
   color: #fff;
 }
 
@@ -849,6 +875,7 @@ body {
 
   .menu-item {
     margin: 40px auto;
+    color: black;
   }
 
   .menu-item p {

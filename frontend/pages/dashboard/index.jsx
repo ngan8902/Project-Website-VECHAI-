@@ -1,19 +1,19 @@
 import Head from 'next/head';
-import Layout from '@/components/layout';
 import dynamic from 'next/dynamic';
 import { FcShop, FcNews } from 'react-icons/fc';
-import { BsHeart, BsChatText, BsChatSquareDots } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
-import Axios from "@/helper/axios.helper";
 import { pages } from "@/utils/contanst";
 import { NextResponse } from "next/server";
 import _ from 'lodash';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import axios from 'axios';
+
+import Axios from "@/helper/axios.helper";
+import Layout from '@/components/layout';
 import CreatePost from "@/components/createPost"
 import PostDashboard from "@/components/postDashboard";
-import axios from 'axios';
-import styles from '@/styles/Dashboard.module.css'
-import Image from 'next/image';
+import scroll from '@/components/sroll';
+
 
 export async function getServerSideProps({ req, res }) {
     const token = req.cookies["vechaitoken"];
@@ -80,6 +80,18 @@ export default function Dashboard({ userData }) {
 }
 
 function BuyerComponent({ user = {} }) {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        axios.get("/api/post?limit=5").then((res) => {
+            console.log(res);
+            if (res && res.data) {
+                const { data } = res.data;
+                setPosts(data);
+            }
+        });
+    }, []);
+    
     const Map = dynamic(() => import("@/components/map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
@@ -124,67 +136,10 @@ function BuyerComponent({ user = {} }) {
                         </div>
                     </div>
 
-                </div>
-                <div className='post'>
-                    <div className={styles.poster}>
-                        <img className={styles.img}
-                            src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                            alt=""
-                        />
-                        <p>{user.fullname} bichngan</p>
-                    </div>
-                    <div className={styles.newsfeed}>
-                        <div className={styles.newsfeed1}>
-                            <Image className={styles.imgpost}
-                                src={'/sanpham/chainhua_draw.jpg'}
-                                width={250}
-                                height={250}
-                            />
-
-                            <Image className={styles.imgpost}
-                                src={'/sanpham/catton.jpg'}
-                                width={250}
-                                height={250}
-                            />
-                        </div>
-                        <div className={styles.newsfeed1}>
-                            <Image className={styles.imgpost}
-                                src={'/sanpham/thungcatton.jpg'}
-                                width={250}
-                                height={250}
-                            />
-
-                            <Image className={styles.imgpost}
-                                src={'/sanpham/chainhuapost.jpg'}
-                                width={250}
-                                height={250}
-                            />
-                        </div>
-
-                        <div className={styles.comment}>
-                            <button className='btn_cm'>
-                                <BsHeart />
-                            </button>
-                            <button className='btn_cm'>
-                                <BsChatSquareDots />
-
-                            </button>
-                            <button className='btn_cm'>
-                                <BsChatText />
-                            </button>
-                        </div>
-
-                        <div className={styles.comment1}>
-                            <img className={styles.img}
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                alt=""
-                            />
-                            <input className='cmt' placeholder='Viết bình luận...'>
-
-                            </input>
-                        </div>
-
-                    </div>
+                    {/*Các bài viết*/}
+                    <PostDashboard posts={posts}></PostDashboard>
+                    {/*Sroll */}
+                    <scroll></scroll>
 
                 </div>
 

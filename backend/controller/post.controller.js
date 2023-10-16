@@ -25,6 +25,7 @@ class PostController {
 
     static createPost = async (req, res, next) => {
         try {
+            console.log(req.body)
             const { userId, name, content, image, expect_price, items, status } = req.body;
             const result = await PostModel.create({
                 userId, name, content, image, expect_price, items, status

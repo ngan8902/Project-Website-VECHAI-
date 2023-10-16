@@ -42,7 +42,7 @@ export default function Layout({ pages = [], user = {}, children }) {
                         {navs.map((nav, index) => {
                             return (
                                 <div className="menu-item flex" key={index}>
-                                    <Link className={style.navcontent} href={nav.href}>
+                                    <Link className='navcontent' href={nav.href}>
                                         <div className="icon">{nav.icon}</div>
                                         <p>{nav.name}</p>
                                     </Link>
