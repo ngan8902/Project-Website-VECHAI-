@@ -125,20 +125,20 @@ export default function UploadFile({ uploadCallBack }) {
 
   return (
     <>
-    <form class="uploadForm form-container" enctype='multipart/form-data'>
-        <div class="upload-files-container">
-            <div class="drag-file-area">
-                <span class="material-icons-outlined upload-icon"> Tải ảnh </span>
-                <h3 class="dynamic-message"> Kéo thả ảnh vào đây </h3>
-                <label class="label"> hoặc <span class="browse-files"> <input type="file" class="default-file-input"/> <span class="browse-files-text">Chọn ảnh</span> <span>từ thiết bị</span> </span> </label>
+    <form className="uploadForm form-container" enctype='multipart/form-data'>
+        <div className="upload-files-container">
+            <div className="drag-file-area">
+                <span className="material-icons-outlined upload-icon"> Tải ảnh </span>
+                <h3 className="dynamic-message"> Kéo thả ảnh vào đây </h3>
+                <label className="label"> hoặc <span className="browse-files"> <input type="file" className="default-file-input"/> <span className="browse-files-text">Chọn ảnh</span> <span>từ thiết bị</span> </span> </label>
             </div>
-            <span class="cannot-upload-message"> <span class="material-icons-outlined">Lỗi</span> Vui lòng chọn một tập tin trước tiên <span class="material-icons-outlined cancel-alert-button">hủy</span> </span>
-            <div class="file-block">
-                <div class="file-info"> <span class="material-icons-outlined file-icon">miêu tả</span> <span class="file-name"> </span> | <span class="file-size">  </span> </div>
-                <span class="material-icons remove-file-icon">xóa</span>
-                <div class="progress-bar"> </div>
+            <span className="cannot-upload-message"> <span className="material-icons-outlined">Lỗi</span> Vui lòng chọn một tập tin trước tiên <span className="material-icons-outlined cancel-alert-button">hủy</span> </span>
+            <div className="file-block">
+                <div className="file-info"> <span className="material-icons-outlined file-icon">miêu tả</span> <span className="file-name"> </span> | <span className="file-size">  </span> </div>
+                <span className="material-icons remove-file-icon">xóa</span>
+                <div className="progress-bar"> </div>
             </div>
-            <button type="button" hidden={true} class="upload-button"> Đăng tải </button>
+            <button type="button" hidden={true} className="upload-button"> Đăng tải </button>
         </div>
     </form>
     </>

@@ -71,7 +71,7 @@ export default function Dashboard({ userData }) {
             </Head>
             <main>
                 <Layout pages={layoutPages} user={{ fullname, name, email }}>
-                    {renderContent(name)}
+                    {renderContent(name, userData)}
                 </Layout>
             </main>
         </>
@@ -98,39 +98,39 @@ function BuyerComponent({ user = {} }) {
 
     return <>
         {/* <!-- ======Section======= --> */}
-        <div class="section flex flex-sb">
+        <div className="section flex flex-sb">
             {/* <!-- Section Left --> */}
-            <div class="section-left">
+            <div className="section-left">
                 {/* <!-- ======Banner======= --> */}
                 <div>
                     <Map></Map>
                 </div>
 
-                <div class="nfts">
-                    <div class="trending heading flex flex-sb">
+                <div className="nfts">
+                    <div className="trending heading flex flex-sb">
                         <h2>Bài đăng về ve chai cần bán</h2>
                     </div>
 
                     {/* <!-- ======Categories======= --> */}
 
-                    <div class="categories flex flex-sb">
-                        <div class="category flex">
-                            <div class="icon">🔥</div>
+                    <div className="categories flex flex-sb">
+                        <div className="category flex">
+                            <div className="icon">🔥</div>
                             <p>Tin nổi bật</p>
                         </div>
 
-                        <div class="category flex">
-                            <FcNews style={{ marginRight: '10px' }} class='icon' />
+                        <div className="category flex">
+                            <FcNews style={{ marginRight: '10px' }} className='icon' />
                             <p>Bảng tin</p>
                         </div>
 
-                        <div class="category flex">
-                            <div class="icon">🕹️</div>
+                        <div className="category flex">
+                            <div className="icon">🕹️</div>
                             <p>Gần bạn</p>
                         </div>
 
-                        <div class="category flex">
-                            <FcShop style={{ marginRight: '10px' }} class='icon' />
+                        <div className="category flex">
+                            <FcShop style={{ marginRight: '10px' }} className='icon' />
                             <p>Các vựa</p>
                         </div>
                     </div>
@@ -145,119 +145,119 @@ function BuyerComponent({ user = {} }) {
             </div>
 
             {/* <!-- Section Right --> */}
-            <div class="section-right">
+            <div className="section-right">
 
-                <div class="top-yards">
-                    <div class="heading flex flex-sb">
+                <div className="top-yards">
+                    <div className="heading flex flex-sb">
                         <h2>Top Vựa Ve Chai</h2>
                         <p style={{ fontSize: '1rem' }}>Xem thêm</p>
                     </div>
 
                 </div>
-                <div class="top-creators">
-                    <div class="heading flex flex-sb">
+                <div className="top-creators">
+                    <div className="heading flex flex-sb">
                         <h2>Top Thu Mua</h2>
                         <p style={{ fontSize: '1rem' }}>Xem thêm</p>
                     </div>
 
-                    <div class="creator flex flex-sb">
-                        <div class="follow-creator flex">
+                    <div className="creator flex flex-sb">
+                        <div className="follow-creator flex">
                             <img
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
                             />
-                            <div class="creator-details">
+                            <div className="creator-details">
                                 <h3>Huy Nguyễn</h3>
                                 <p>@huynguyen</p>
                             </div>
                         </div>
 
-                        <a href="#" class="btn following">
+                        <a href="#" className="btn following">
                             Đang theo
                         </a>
                     </div>
 
-                    <div class="creator flex flex-sb">
-                        <div class="follow-creator flex">
+                    <div className="creator flex flex-sb">
+                        <div className="follow-creator flex">
                             <img
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
                             />
-                            <div class="creator-details">
+                            <div className="creator-details">
                                 <h3>Ngân Nguyễn</h3>
                                 <p>@bichngan</p>
                             </div>
                         </div>
 
-                        <a href="#" class="btn follow following">
+                        <a href="#" className="btn follow following">
                             Theo dõi
                         </a>
                     </div>
 
-                    <div class="creator flex flex-sb">
-                        <div class="follow-creator flex">
+                    <div className="creator flex flex-sb">
+                        <div className="follow-creator flex">
                             <img
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
                             />
-                            <div class="creator-details">
+                            <div className="creator-details">
                                 <h3>Hassnain Haider</h3>
                                 <p>@hassnain</p>
                             </div>
                         </div>
 
-                        <a href="#" class="btn follow following">
+                        <a href="#" className="btn follow following">
                             Theo dõi
                         </a>
                     </div>
 
-                    <div class="creator flex flex-sb">
-                        <div class="follow-creator flex">
+                    <div className="creator flex flex-sb">
+                        <div className="follow-creator flex">
                             <img
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
                             />
-                            <div class="creator-details">
+                            <div className="creator-details">
                                 <h3>Hassnain Haider</h3>
                                 <p>@hassnain</p>
                             </div>
                         </div>
 
-                        <a href="#" class="btn follow following">
+                        <a href="#" className="btn follow following">
                             Theo dõi
                         </a>
                     </div>
 
-                    <div class="creator flex flex-sb">
-                        <div class="follow-creator flex">
+                    <div className="creator flex flex-sb">
+                        <div className="follow-creator flex">
                             <img
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
                             />
-                            <div class="creator-details">
+                            <div className="creator-details">
                                 <h3>Hassnain Haider</h3>
                                 <p>@hassnain</p>
                             </div>
                         </div>
 
-                        <a href="#" class="btn follow following">
+                        <a href="#" className="btn follow following">
                             Theo dõi
                         </a>
                     </div>
 
-                    <div class="creator flex flex-sb">
-                        <div class="follow-creator flex">
+                    <div className="creator flex flex-sb">
+                        <div className="follow-creator flex">
                             <img
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
                             />
-                            <div class="creator-details">
+                            <div className="creator-details">
                                 <h3>Hassnain Haider</h3>
                                 <p>@hassnain</p>
                             </div>
                         </div>
 
-                        <a href="#" class="btn follow following">
+                        <a href="#" className="btn follow following">
                             Theo dõi
                         </a>
                     </div>
@@ -313,40 +313,40 @@ function SalerComponent({userData }) {
     return (
         <>
             {/* <!-- ======Section======= --> */}
-            <div class="section flex flex-sb">
+            <div className="section flex flex-sb">
                 {/* <!-- Section Left --> */}
-                <div class="section-left">
+                <div className="section-left">
                     {/* <!-- ======Banner======= --> */}
                     <div>
                         <Map></Map>
                     </div>
 
-                    <div class="nfts">
-                        <div class="trending heading flex flex-sb">
+                    <div className="nfts">
+                        <div className="trending heading flex flex-sb">
                             <h2>Bài đăng về ve chai cần bán</h2>
                             <p onClick={toggle}>Tạo bài viết</p>
                         </div>
 
                         {/* <!-- ======Categories======= --> */}
 
-                        <div class="categories flex flex-sb">
-                            <div class="category flex">
-                                <div class="icon">🔥</div>
+                        <div className="categories flex flex-sb">
+                            <div className="category flex">
+                                <div className="icon">🔥</div>
                                 <p>Tin nổi bật</p>
                             </div>
 
-                            <div class="category flex">
-                                <FcNews style={{ marginRight: '10px' }} class='icon' />
+                            <div className="category flex">
+                                <FcNews style={{ marginRight: '10px' }} className='icon' />
                                 <p>Bảng tin</p>
                             </div>
 
-                            <div class="category flex">
-                                <div class="icon">🕹️</div>
+                            <div className="category flex">
+                                <div className="icon">🕹️</div>
                                 <p>Gần bạn</p>
                             </div>
 
-                            <div class="category flex">
-                                <FcShop style={{ marginRight: '10px' }} class='icon' />
+                            <div className="category flex">
+                                <FcShop style={{ marginRight: '10px' }} className='icon' />
                                 <p>Các vựa</p>
                             </div>
                         </div>
@@ -356,119 +356,119 @@ function SalerComponent({userData }) {
                 </div>
 
                 {/* <!-- Section Right --> */}
-                <div class="section-right">
+                <div className="section-right">
 
-                    <div class="top-yards">
-                        <div class="heading flex flex-sb">
+                    <div className="top-yards">
+                        <div className="heading flex flex-sb">
                             <h2>Top Vựa Ve Chai</h2>
                             <p style={{ fontSize: '1rem' }}>Xem thêm</p>
                         </div>
 
                     </div>
-                    <div class="top-creators">
-                        <div class="heading flex flex-sb">
+                    <div className="top-creators">
+                        <div className="heading flex flex-sb">
                             <h2>Top Thu Mua</h2>
                             <p style={{ fontSize: '1rem' }}>Xem thêm</p>
                         </div>
 
-                        <div class="creator flex flex-sb">
-                            <div class="follow-creator flex">
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
                                 <img
                                     src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                     alt=""
                                 />
-                                <div class="creator-details">
+                                <div className="creator-details">
                                     <h3>Huy Nguyễn</h3>
                                     <p>@huynguyen</p>
                                 </div>
                             </div>
 
-                            <a href="#" class="btn following">
+                            <a href="#" className="btn following">
                                 Đang theo
                             </a>
                         </div>
 
-                        <div class="creator flex flex-sb">
-                            <div class="follow-creator flex">
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
                                 <img
                                     src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                     alt=""
                                 />
-                                <div class="creator-details">
+                                <div className="creator-details">
                                     <h3>Ngân Nguyễn</h3>
                                     <p>@bichngan</p>
                                 </div>
                             </div>
 
-                            <a href="#" class="btn follow following">
+                            <a href="#" className="btn follow following">
                                 Theo dõi
                             </a>
                         </div>
 
-                        <div class="creator flex flex-sb">
-                            <div class="follow-creator flex">
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
                                 <img
                                     src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                     alt=""
                                 />
-                                <div class="creator-details">
+                                <div className="creator-details">
                                     <h3>Hassnain Haider</h3>
                                     <p>@hassnain</p>
                                 </div>
                             </div>
 
-                            <a href="#" class="btn follow following">
+                            <a href="#" className="btn follow following">
                                 Theo dõi
                             </a>
                         </div>
 
-                        <div class="creator flex flex-sb">
-                            <div class="follow-creator flex">
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
                                 <img
                                     src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                     alt=""
                                 />
-                                <div class="creator-details">
+                                <div className="creator-details">
                                     <h3>Hassnain Haider</h3>
                                     <p>@hassnain</p>
                                 </div>
                             </div>
 
-                            <a href="#" class="btn follow following">
+                            <a href="#" className="btn follow following">
                                 Theo dõi
                             </a>
                         </div>
 
-                        <div class="creator flex flex-sb">
-                            <div class="follow-creator flex">
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
                                 <img
                                     src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                     alt=""
                                 />
-                                <div class="creator-details">
+                                <div className="creator-details">
                                     <h3>Hassnain Haider</h3>
                                     <p>@hassnain</p>
                                 </div>
                             </div>
 
-                            <a href="#" class="btn follow following">
+                            <a href="#" className="btn follow following">
                                 Theo dõi
                             </a>
                         </div>
 
-                        <div class="creator flex flex-sb">
-                            <div class="follow-creator flex">
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
                                 <img
                                     src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                     alt=""
                                 />
-                                <div class="creator-details">
+                                <div className="creator-details">
                                     <h3>Hassnain Haider</h3>
                                     <p>@hassnain</p>
                                 </div>
                             </div>
 
-                            <a href="#" class="btn follow following">
+                            <a href="#" className="btn follow following">
                                 Theo dõi
                             </a>
                         </div>

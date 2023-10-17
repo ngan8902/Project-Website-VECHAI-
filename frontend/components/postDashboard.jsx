@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import axios from 'axios'
 import Image from "next/image";
-import styles from '@/styles/Dashboard.module.css'
-import { BsHeart, BsChatText, BsChatSquareDots } from 'react-icons/bs'
+
 
 export default function PostDashboard({ posts = [] }) {
     const [data, setData] = useState(posts);

@@ -7,9 +7,9 @@ import { uploadFileToStorage } from '@/helper/firebase.hepler'
 import axios from '@/helper/axios.helper'
 
 export default function createPost({ handleCreatedCB, userData }) {
-    const { userId } = useState([userData])
+    const { id } = useState([userData])
     const [createPost, setCreatePost] = useState({
-        name: null, userId: userId, image: null, content: null, expect_price: null
+        name: null, userId: id, image: null, content: null, expect_price: null
     })
     const [files, setFiles] = useState(null)
     const [errMsg, setErrMsg] = useState(null)
@@ -107,7 +107,7 @@ export default function createPost({ handleCreatedCB, userData }) {
             }
             <Row style={{ float: 'right' }}>
                 <Col>
-                    <button className='btnModal' color="primary" style={{ fontSize: 12 }}>
+                    <button className='btnModal' color="primary" style={{ fontSize: 12 }} >
                         Hủy
                     </button>
                 </Col>
