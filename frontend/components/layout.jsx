@@ -5,14 +5,7 @@ import {
     BsSun,
     BsFillMoonStarsFill,
     BsFillBellFill,
-    BsHouseDoorFill,
-    BsFillPostcardHeartFill,
-    BsPersonLinesFill,
-    BsShop,
-
 } from "react-icons/bs"
-
-import style from '@/styles/Dashboard.module.css'
 
 export default function Layout({ pages = [], user = {}, children }) {
     const [navs, setNavs] = useState(pages);

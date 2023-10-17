@@ -83,6 +83,18 @@ button:hover {
 
 }
 
+.btnModal {
+  font-size: 1rem;
+  padding: 5px;
+  border-radius: 20px;
+  transition: 0.4s linear;
+  background:  black;
+}
+
+.btnModal:hover {
+  background: rgb(183, 182, 182);
+}
+
 .grid-container {
   display: flex;
   flex-wrap: nowrap;
@@ -248,9 +260,9 @@ body {
   -webkit-background-clip: text;
 }
 
-.decription{
-  font-size: 12px; 
-  padding: 10px; 
+.decription {
+  font-size: 12px;
+  padding: 10px;
   background: black;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -379,7 +391,7 @@ body {
   margin: 0 6px;
 }
 
-.notification{
+.notification {
   background: #fff;
   padding: 10px;
   border-radius: 20px;
@@ -387,7 +399,7 @@ body {
   cursor: pointer;
 }
 
-.post{
+.post {
   background: white;
   width: 503px;
   height: 800px;
@@ -397,13 +409,13 @@ body {
   padding: 1px;
 }
 
-.status{
+.status {
   margin-left: 10px;
   color: black;
   font-size: 1rem;
 }
 
-.btn_cm{
+.btn_cm {
   padding: 1%;
   text-align: center;
   height: 0px;
@@ -415,11 +427,11 @@ body {
   border-radius: 10px;
 }
 
-.btn_cm:hover{
+.btn_cm:hover {
   background: rgb(196, 194, 194);
 }
 
-.cmt{
+.cmt {
   height: 35px;
   padding: 5px 10px;
   border-radius: 10px;
@@ -482,6 +494,10 @@ body {
   transition: 0.4s linear;
 }
 
+.close{
+  background: black;
+}
+
 .nfts {
   padding: 0 8px;
   margin: 25px 0;
@@ -495,12 +511,13 @@ body {
 
 .heading p {
   font-size: 18px;
-  color: rgb(122, 64, 222);;
+  color: rgb(122, 64, 222);
+  ;
   cursor: pointer;
 }
 
 .heading p:hover {
-  text-decoration:underline;
+  text-decoration: underline;
 }
 
 /* =====Categories======= */
@@ -600,20 +617,20 @@ body {
   pointer-events: none;
 }
 
-.top-yards{
-    width: 100%;
-    /* margin-top: 155%; */
-    padding: 15px;
-    background: #fff;
-    border-radius: 20px;
-    transition: 0.3s linear;
+.top-yards {
+  width: 100%;
+  margin-top: 50%;
+  padding: 15px;
+  background: #fff;
+  border-radius: 20px;
+  transition: 0.3s linear;
 }
 
-.top-yards .heading{
+.top-yards .heading {
   margin-bottom: 20px;
 }
 
-.top-yards .heading h2{
+.top-yards .heading h2 {
   font-size: 18px;
 }
 
@@ -661,6 +678,147 @@ body {
   border: 1px solid rgba(161, 162, 175, 0.3);
 }
 
+/*Upload File*/
+.uploadForm.form-container {
+  padding: 10px;
+  background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(255, 69, 107, 1) 100%);;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.uploadForm .upload-files-container {
+  background-color: #f7fff7;
+  width: 420px;
+  padding: 20px 20px;
+  border-radius: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 10px 20px, rgba(0, 0, 0, 0.28) 0px 6px 6px;
+}
+
+.uploadForm .drag-file-area {
+  border: 2px dashed #8d799d;
+  border-radius: 40px;
+  margin: 10px 0 15px;
+  padding: 5px 10px;
+  width: 350px;
+  text-align: center;
+}
+
+.uploadForm .drag-file-area .upload-icon {
+  font-size: 20px;
+}
+
+.uploadForm .drag-file-area h3 {
+  font-size: 16px;
+  margin: 15px 0;
+}
+
+.drag-file-area label {
+  font-size: 15px;
+  padding: 4px;
+}
+
+.uploadForm .drag-file-area label .browse-files-text {
+  color: #7b2cbf;
+  font-weight: bolder;
+  cursor: pointer;
+}
+
+.uploadForm .drag-file-area label .browse-files-text:hover{
+  text-decoration: underline;
+}
+
+.uploadForm .browse-files span {
+  position: relative;
+  top: -25px;
+}
+
+.uploadForm .default-file-input {
+  opacity: 0;
+}
+
+.uploadForm .cannot-upload-message {
+  background-color: #ffc6c4;
+  font-size: 17px;
+  display: flex;
+  align-items: center;
+  margin: 5px 0;
+  padding: 5px 10px 5px 30px;
+  border-radius: 5px;
+  color: #BB0000;
+  display: none;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+
+  100% {
+    opacity: 1;
+  }
+}
+
+.uploadForm .cannot-upload-message span,
+.upload-button-icon {
+  padding-right: 10px;
+}
+
+.uploadForm .cannot-upload-message span:last-child {
+  padding-left: 20px;
+  cursor: pointer;
+}
+
+.uploadForm .file-block {
+  color: #f7fff7;
+  background-color: #7b2cbf;
+  transition: all 1s;
+  width: 390px;
+  position: relative;
+  display: none;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 10px 0 15px;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+.uploadForm .file-info {
+  display: flex;
+  align-items: center;
+  font-size: 15px;
+}
+
+.uploadForm .file-icon {
+  margin-right: 10px;
+}
+
+.uploadForm .file-name,
+.uploadForm .file-size {
+  padding: 0 3px;
+}
+
+.uploadForm .remove-file-icon {
+  cursor: pointer;
+}
+
+.uploadForm .progress-bar {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  left: 4.5%;
+  width: 0;
+  height: 5px;
+  border-radius: 25px;
+  background-color: #4BB543;
+}
+
 /* End Dashboard */
 
 /* Dark Mode */
@@ -676,15 +834,15 @@ body {
   background: #161622;
 }
 
-.darkMode .navcontent{
+.darkMode .navcontent {
   color: #fff;
 }
 
-.darkMode .navcontent:hover{
+.darkMode .navcontent:hover {
   color: grey;
 }
 
-.darkMode .decription{
+.darkMode .decription {
   background: white;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
@@ -706,8 +864,7 @@ body {
 .darkMode .search input,
 .darkMode .user,
 .darkMode .theme,
-.darkMode .notification
-{
+.darkMode .notification {
   background: #161622;
 }
 
@@ -721,14 +878,13 @@ body {
   color: #fff;
 }
 
-.darkMode .btn_cm:hover{
+.darkMode .btn_cm:hover {
   background: rgb(73, 72, 72);
 }
 
 .darkMode .dark.active,
 .darkMode .light.active,
-.darkMode .cmt
- {
+.darkMode .cmt {
   background: #1e1e2d;
   border: none;
 }

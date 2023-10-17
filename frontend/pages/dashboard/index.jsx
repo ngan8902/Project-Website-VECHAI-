@@ -12,7 +12,6 @@ import Axios from "@/helper/axios.helper";
 import Layout from '@/components/layout';
 import CreatePost from "@/components/createPost"
 import PostDashboard from "@/components/postDashboard";
-import scroll from '@/components/sroll';
 
 
 export async function getServerSideProps({ req, res }) {
@@ -43,7 +42,7 @@ export default function Dashboard({ userData }) {
 
     const renderContent = (roleName) => {
         if (roleName === "saler") {
-            return <SalerComponent></SalerComponent>;
+            return <SalerComponent userData={userData}></SalerComponent>;
         } else if (roleName === "buyer") {
             return <BuyerComponent></BuyerComponent>;
         } else {
@@ -91,7 +90,7 @@ function BuyerComponent({ user = {} }) {
             }
         });
     }, []);
-    
+
     const Map = dynamic(() => import("@/components/map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
@@ -269,7 +268,7 @@ function BuyerComponent({ user = {} }) {
     </>
 }
 
-function SalerComponent() {
+function SalerComponent({userData }) {
     const Map = dynamic(() => import("@/components/map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
@@ -294,12 +293,22 @@ function SalerComponent() {
         <button
             type="button"
             className="close"
-            style={{ position: 'absolute', top: '15px', right: '15px' }}
+            style={{
+                position: 'absolute',
+                top: '15px',
+                right: '15px',
+                borderRadius: '15px'
+            }}
             onClick={toggle}
         >
             &times;
         </button>
     );
+
+    const handleCreatedCB = () => {
+        setModal(false)
+        refreshPosts()
+      }
 
     return (
         <>
@@ -315,6 +324,7 @@ function SalerComponent() {
                     <div class="nfts">
                         <div class="trending heading flex flex-sb">
                             <h2>Bài đăng về ve chai cần bán</h2>
+                            <p onClick={toggle}>Tạo bài viết</p>
                         </div>
 
                         {/* <!-- ======Categories======= --> */}
@@ -467,19 +477,11 @@ function SalerComponent() {
             </div>
             {/* <!-- ======End Section======= --> */}
 
-            <Modal isOpen={modal} toggle={toggle} external={externalCloseBtn}>
-                <ModalHeader><span style={{ color: "#ccc" }}>Tạo bài viết mới</span></ModalHeader>
+            <Modal isOpen={modal} toggle={toggle} external={externalCloseBtn} >
+                <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Tạo bài viết mới</span></ModalHeader>
                 <ModalBody>
-                    <CreatePost></CreatePost>
+                    <CreatePost userData={userData} handleCreatedCB={handleCreatedCB}></CreatePost>
                 </ModalBody>
-                <ModalFooter>
-                    <Button color="primary" style={{ fontSize: 12 }} onClick={toggle}>
-                        Hủy
-                    </Button>{' '}
-                    <Button color="secondary" style={{ fontSize: 12 }} onClick={toggle}>
-                        Tạo
-                    </Button>
-                </ModalFooter>
             </Modal>
         </>
     );
