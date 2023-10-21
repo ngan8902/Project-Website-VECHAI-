@@ -92,7 +92,7 @@ function BuyerComponent({ user = {} }) {
         });
     }, []);
 
-    const Map = dynamic(() => import("@/components/map"), {
+    const Map = dynamic(() => import("@/components/Map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
     });
@@ -270,7 +270,7 @@ function BuyerComponent({ user = {} }) {
 }
 
 function SalerComponent({ userData }) {
-    const Map = dynamic(() => import("@/components/map"), {
+    const Map = dynamic(() => import("@/components/Map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
     });
