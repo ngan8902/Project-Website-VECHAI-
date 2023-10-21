@@ -28,7 +28,7 @@ class PostController {
             console.log(req.body)
             const { userId, name, content, image, expect_price, items, status } = req.body;
             const result = await PostModel.create({
-                userId, name, content, image, expect_price, items, status
+                userId, name, content, image, expect_price, items, status,
             })
             if (!result) throw new Error("Can't create post");
             res.status(200).json({

@@ -1,13 +1,6 @@
 import Head from "next/head";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import axios from "axios";
-import {
-    BsSun,
-    BsFillMoonStarsFill,
-    BsFillBellFill,
-    BsFillGridFill,
-} from "react-icons/bs";
 import dynamic from "next/dynamic";
 import Layout from "@/components/layout";
 import Axios from '@/helper/axios.helper'

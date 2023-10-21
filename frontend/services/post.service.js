@@ -1,4 +1,4 @@
-import Axios from '@/helper/axios.helper'
+import axios from '@/helper/axios.helper';
 
 class PostService {
 
@@ -6,7 +6,7 @@ class PostService {
         let url = '/api/post/get?'
         if(limit) url = url + `limit=${limit}&`
         if(offset) url = url + `offset=${offset}&`
-        return Axios.get(url).then((response) => {
+        return axios.get(url).then((response) => {
             const { data } = response
             return data
         }).catch((err) => {
@@ -17,12 +17,18 @@ class PostService {
     }
     
     static createdPost = async ({ userId, name, content, image, expect_price }) => {
-        return Axios.post('/api/post/create', {
+        return axios.post('/api/post/create', {
             userId, name, content, image, expect_price
+        }).then((response) => {
+            const { data } = response
+            return data
+        }).catch((err) => {
+            console.log(err)
+            return {
+                err: err.message
+            }
         })
     }
-
-
 }
 
 module.exports = PostService

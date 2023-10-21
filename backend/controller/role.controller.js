@@ -60,16 +60,13 @@ class RoleController {
                 accessApp: accessApp
                 , name: name
                 , description: description
-                ,
-                id: RoleId
+                , id: RoleId
             })
             if (!result) throw new Error("Can't create role");
             res.status(200).json({
                 message: 'Create roles success!',
                 data: result
             })
-
-
         }
         catch (err) {
             res.status(500).json({

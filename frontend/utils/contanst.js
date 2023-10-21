@@ -15,7 +15,7 @@ const pages = [
   },
   {
     key: "posts",
-    name: "Đăng bài",
+    name: "Các bài đăng",
     icon: <BsFillPostcardHeartFill />,
     href: "/dashboard/posts"
   },

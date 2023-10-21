@@ -22,7 +22,8 @@ class PostModel {
     static create = async ({userId, name, content, image, expect_price, items, status = 'draft'}) => {
         return new Promise((resolve, reject) => {
             con.query('INSERT INTO posts SET ?', {
-                userId, name, content, image, expect_price, items, status
+                userId, name, content, image, expect_price, items, status,
+                createdAt: new Date(), updatedAt: new Date()
             }, function (error, results, fields) {
                 if (error) reject(error)
                 resolve(results)
@@ -42,8 +43,8 @@ class PostModel {
             approve_request INT,
             status ENUM('draft', 'publish', 'close'),
             isDeleted BOOLEAN DEFAULT false,
-            createdAt DATETIME DEFAULT NOW(),
-            updatedAt DATETIME DEFAULT NOW(),
+            createdAt DATETIME ,
+            updatedAt DATETIME,
             FOREIGN KEY (userId) REFERENCES users(id)
             )`;
         return con.querySync(sql);

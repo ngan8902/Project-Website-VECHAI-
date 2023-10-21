@@ -6,8 +6,8 @@ import UploadComponent from '@/components/uploadFile'
 import { uploadFileToStorage } from '@/helper/firebase.hepler'
 import axios from '@/helper/axios.helper'
 
-export default function createPost({ handleCreatedCB, userData }) {
-    const { id } = useState([userData])
+export default function createPost({ handleCreatedCB, userData, handleClosePost }) {
+    const { id } = userData
     const [createPost, setCreatePost] = useState({
         name: null, userId: id, image: null, content: null, expect_price: null
     })
@@ -36,6 +36,10 @@ export default function createPost({ handleCreatedCB, userData }) {
         }).catch(() => {
             return setErrMsg('Tải ảnh lên thất bại!!!')
         })
+    }
+
+    const handleClose = () => {
+        handleClosePost()
     }
 
     return (
@@ -107,7 +111,7 @@ export default function createPost({ handleCreatedCB, userData }) {
             }
             <Row style={{ float: 'right' }}>
                 <Col>
-                    <button className='btnModal' color="primary" style={{ fontSize: 12 }} >
+                    <button className='btnModal' color="primary" style={{ fontSize: 12 }} onClick={handleClose} >
                         Hủy
                     </button>
                 </Col>

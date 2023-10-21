@@ -59,6 +59,13 @@ h5 {
   padding-top: 10px;
 }
 
+.maptitle{
+  margin-bottom: 25px;
+  color: black;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
 p {
   font-size: 1rem;
   padding-top: 10px;
@@ -592,7 +599,6 @@ body {
 .section-right {
   padding: 12px;
   flex: 0 0 30%;
-  margin-top: -390px;
 }
 
 .graph {
@@ -619,7 +625,6 @@ body {
 
 .top-yards {
   width: 100%;
-  margin-top: 50%;
   padding: 15px;
   background: #fff;
   border-radius: 20px;
@@ -634,9 +639,25 @@ body {
   font-size: 18px;
 }
 
+.nameshop h4{
+  color: rgb(77, 76, 76);
+  padding: 10px;
+}
+
+.nameshop{
+  display: flex;
+  justify-content:flex-start;
+}
+
+.yard-icon{
+  font-size: 2rem;
+  color: rgb(77, 76, 76);
+  margin-right: 5px;
+}
+
 .top-creators {
   width: 100%;
-  margin-top: 30%;
+  margin-top: 35%;
   padding: 15px;
   background: #fff;
   border-radius: 20px;
@@ -681,7 +702,7 @@ body {
 /*Upload File*/
 .uploadForm.form-container {
   padding: 10px;
-  background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(255, 69, 107, 1) 100%);;
+  background: linear-gradient(90deg, rgba(63, 94, 251, 1) 0%, rgba(255, 69, 107, 1) 100%);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -834,8 +855,13 @@ body {
   background: #161622;
 }
 
-.darkMode .navcontent {
+.darkMode .navcontent{
   color: #fff;
+}
+
+.darkMode .yard-icon,
+.darkMode .nameshop h4{
+  color: #dee2e6;
 }
 
 .darkMode .navcontent:hover {
@@ -874,7 +900,8 @@ body {
 .darkMode .btn_cm,
 .darkMode .post p,
 .darkMode .status,
-.darkMode .cmt {
+.darkMode .cmt,
+.darkMode .maptitle{
   color: #fff;
 }
 

@@ -5,12 +5,12 @@ import { getStorage, ref, uploadBytes, getDownloadURL, deleteObject } from "fire
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-    apiKey: "AIzaSyAm2wp-9g9B514AdDEFcp3Nwjd2Pp8G6O8",
-    authDomain: "vechai-firebase-upload.firebaseapp.com",
-    projectId: "vechai-firebase-upload",
-    storageBucket: "vechai-firebase-upload.appspot.com",
-    messagingSenderId: "398323844807",
-    appId: "1:398323844807:web:2d287dd31c0d41b64260e2"
+    apiKey: "AIzaSyBMcGtLm-Xz5IDkub4wCIFSCQRXE7Keytw",
+    authDomain: "vechai-5a3e1.firebaseapp.com",
+    projectId: "vechai-5a3e1",
+    storageBucket: "vechai-5a3e1.appspot.com",
+    messagingSenderId: "912011742702",
+    appId: "1:912011742702:web:c8a723fb28fc83d02d52ff"
 };
 
 // Initialize Firebase

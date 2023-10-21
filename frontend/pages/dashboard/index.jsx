@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { FcShop, FcNews } from 'react-icons/fc';
+import {BsPinMapFill} from 'react-icons/bs'
 import { useState, useEffect } from 'react';
 import { pages } from "@/utils/contanst";
 import { NextResponse } from "next/server";
@@ -268,7 +269,7 @@ function BuyerComponent({ user = {} }) {
     </>
 }
 
-function SalerComponent({userData }) {
+function SalerComponent({ userData }) {
     const Map = dynamic(() => import("@/components/map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
@@ -278,37 +279,28 @@ function SalerComponent({userData }) {
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
+        refreshPosts()
+      }, []);
+    
+      const refreshPosts = () => {
         axios.get("/api/post?limit=5").then((res) => {
-            console.log(res);
-            if (res && res.data) {
-                const { data } = res.data;
-                setPosts(data);
-            }
+          console.log(res);
+          if (res && res.data) {
+            const { data } = res.data;
+            setPosts(data);
+          }
         });
-    }, []);
-
+      }
     const toggle = () => setModal(!modal);
-
-    const externalCloseBtn = (
-        <button
-            type="button"
-            className="close"
-            style={{
-                position: 'absolute',
-                top: '15px',
-                right: '15px',
-                borderRadius: '15px'
-            }}
-            onClick={toggle}
-        >
-            &times;
-        </button>
-    );
 
     const handleCreatedCB = () => {
         setModal(false)
         refreshPosts()
-      }
+    }
+
+    const handleClosePost =() => {
+        setModal(false)
+    }
 
     return (
         <>
@@ -317,6 +309,7 @@ function SalerComponent({userData }) {
                 {/* <!-- Section Left --> */}
                 <div className="section-left">
                     {/* <!-- ======Banner======= --> */}
+                    <p className='maptitle'>Bản đồ chỉ vị trí của các vựa ve chai gần bạn</p>
                     <div>
                         <Map></Map>
                     </div>
@@ -362,6 +355,13 @@ function SalerComponent({userData }) {
                         <div className="heading flex flex-sb">
                             <h2>Top Vựa Ve Chai</h2>
                             <p style={{ fontSize: '1rem' }}>Xem thêm</p>
+                        </div>
+                        <div className='yards'>
+                            <div className='nameshop'>
+                                <BsPinMapFill className='yard-icon'></BsPinMapFill>
+                                <h4>Vựa Ve Chai</h4>
+                            </div>
+                            <p>162 Đ. Hiệp Thành 13, Hiệp Thành, Quận 12, Thành phố Hồ Chí Minh</p>
                         </div>
 
                     </div>
@@ -477,10 +477,10 @@ function SalerComponent({userData }) {
             </div>
             {/* <!-- ======End Section======= --> */}
 
-            <Modal isOpen={modal} toggle={toggle} external={externalCloseBtn} >
+            <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Tạo bài viết mới</span></ModalHeader>
                 <ModalBody>
-                    <CreatePost userData={userData} handleCreatedCB={handleCreatedCB}></CreatePost>
+                    <CreatePost userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreatePost>
                 </ModalBody>
             </Modal>
         </>

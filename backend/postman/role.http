@@ -8,7 +8,7 @@ POST  http://localhost:8000/api/role/create
 content-type: application/json
 
 {
-    "name": "saler",
+    "name": "buyer",
     "accessApp": "dashboard",
     "description": "Người thua mua ve chai"
 }
@@ -18,7 +18,7 @@ POST  http://localhost:8000/api/role/create
 content-type: application/json
 
 {
-    "name": "buyer",
+    "name": "saler",
     "accessApp": "dashboard",
     "description": "Người bán ve chai"
 }
