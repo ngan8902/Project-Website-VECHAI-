@@ -1,18 +1,18 @@
 'use strict'
 
-import { useState } from 'react'
+import react from 'react'
 import { Form, FormGroup, Label, Col, Input, Button, Row } from 'reactstrap'
 import UploadComponent from '@/components/uploadFile'
 import { uploadFileToStorage } from '@/helper/firebase.hepler'
 import axios from '@/helper/axios.helper'
 
-export default function createPost({ handleCreatedCB, userData, handleClosePost }) {
+export default function createPostPage({ handleCreatedCB, userData, handleClosePost }) {
     const { id } = userData
-    const [createPost, setCreatePost] = useState({
+    const [createPost, setCreatePost] = react.useState({
         name: null, userId: id, image: null, content: null, expect_price: null
     })
-    const [files, setFiles] = useState(null)
-    const [errMsg, setErrMsg] = useState(null)
+    const [files, setFiles] = react.useState(null)
+    const [errMsg, setErrMsg] = react.useState(null)
 
     const handledUploadFile = (file) => {
         console.log('File::::', file.files[0])

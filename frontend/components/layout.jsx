@@ -26,11 +26,11 @@ export default function Layout({ pages = [], user = {}, children }) {
     }
     return (
         <>
-            <div class="dashboard">
+            <div className="dashboard">
                 {/* <!-- Sidebar --> */}
-                <div class="sidebar flex-c flex-sb">
-                    <div class="brand">VeChai <p class="decription" style={{ fontSize: 12 , padding: '10px' , color: 'white' }}>{ user.name }</p> </div>
-                    <div class="side-nav">
+                <div className="sidebar flex-c flex-sb">
+                    <div className="brand">VeChai <p className="decription" style={{ fontSize: 12 , padding: '10px' , color: 'white' }}>{ user.name }</p> </div>
+                    <div className="side-nav">
 
                         {navs.map((nav, index) => {
                             return (
@@ -44,9 +44,9 @@ export default function Layout({ pages = [], user = {}, children }) {
                         })}
 
                     </div>
-                    <div class="log-out">
-                        <div class="menu-item flex" onClick={handelLogout}>
-                            <div class="icon">
+                    <div className="log-out">
+                        <div className="menu-item flex" onClick={handelLogout}>
+                            <div className="icon">
                                 <ion-icon name="log-out-outline"></ion-icon>
                             </div>
 
@@ -57,30 +57,30 @@ export default function Layout({ pages = [], user = {}, children }) {
                 {/* <!-- End Sidebar --> */}
 
                 {/* <!-- Dashboard Content --> */}
-                <div class="dashboard-content">
+                <div className="dashboard-content">
                     {/* <!-- ======Topbar======= --> */}
-                    <div class="topbar flex flex-sb">
-                        <div class="search flex">
-                            <div class="icon">
+                    <div className="topbar flex flex-sb">
+                        <div className="search flex">
+                            <div className="icon">
                                 <ion-icon name="search-outline"></ion-icon>
                             </div>
                             <input type="text" placeholder=" Tìm kiếm ..." />
                         </div>
 
-                        <div class="theme flex">
-                            <div class="dark flex">
+                        <div className="theme flex">
+                            <div className="dark flex">
                                 <BsFillMoonStarsFill />
                             </div>
-                            <div class="light active flex">
+                            <div className="light active flex">
                                 <BsSun />
                             </div>
                         </div>
 
-                        <div class="notification icon">
+                        <div className="notification icon">
                             <BsFillBellFill style={{cursor: 'pointer'}} />
                         </div>
 
-                        <div class="user flex flex-sb">
+                        <div className="user flex flex-sb">
                             <img
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
