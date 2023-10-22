@@ -1,5 +1,5 @@
 import {
-  BsFillBellFill,
+  BsPencilSquare,
   BsHouseDoorFill,
   BsFillPostcardHeartFill,
   BsPersonLinesFill,
@@ -30,6 +30,12 @@ const pages = [
     name: "Tìm chủ vựa",
     icon: <BsShop />,
     href: "/dashboard/findscrapyard",
+  },
+  {
+    key: "management",
+    name: "Quản lý vựa",
+    icon: <BsPencilSquare />,
+    href: "/dashboard/management",
   },
 ];
 export { pages };

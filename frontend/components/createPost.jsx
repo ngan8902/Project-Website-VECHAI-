@@ -44,12 +44,6 @@ export default function createPostPage({ handleCreatedCB, userData, handleCloseP
 
     return (
         <>
-            {/* <input type='file'
-            onChange={(event) => {
-                console.log(event.target.files[0])
-                setImageUpload(event.target.files[0])
-            }}
-        /> */}
             <Form>
                 <FormGroup row>
                     <Label for="namepost" sm={4}>
