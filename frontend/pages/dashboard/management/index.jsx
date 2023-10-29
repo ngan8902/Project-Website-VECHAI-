@@ -1,13 +1,14 @@
 import dynamic from "next/dynamic";
-import Layout from "@/components/layout";
 import Head from "next/head";
 import { useState, useEffect } from "react";
-import axios from "@/helper/axios.helper";
-import { Table } from "reactstrap";
 import _ from "lodash";
+import { Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
+
+import Layout from "@/components/layout";
+import axios from "@/helper/axios.helper";
 import { pages } from "@/utils/contanst";
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 import CreateYard from "@/components/createYard"
+import TableScrapYard from "@/components/tableScrapYard"
 
 export async function getServerSideProps({ req, res }) {
     const token = req.cookies["vechaitoken"];
@@ -26,21 +27,33 @@ export async function getServerSideProps({ req, res }) {
 }
 
 export default function YardManage({ userData }) {
+    const Map = dynamic(() => import("@/components/Map"), {
+        ssr: false,
+        loading: () => <p>Loading...</p>,
+    });
 
     const { fullname, name, email, accessApp } = userData;
     const [layoutPages, setLayoutPages] = useState([]);
+    const [yards, setYards] = useState([]);
 
     useEffect(() => {
         detectAccessPage()
+        refreshData()
     }, []);
 
-    const renderContent = (roleName) => {
-        if (roleName === "yard") {
-            return <YardManagePage></YardManagePage>;
-        } else {
-            return <h1></h1>
-        }
-    };
+    const refreshData = () => {
+        axios.get("/api/yard").then((res) => {
+            if (res && res.data) {
+                const { data } = res.data;
+                data.forEach(yard => {
+                    if(!yard["lag_lat"]) return
+                    yard["position"] = yard["lag_lat"].split(', ')
+                    yard["popupContent"] = yard.address
+                });
+                setYards(data);
+            }
+        });
+    }
 
     const detectAccessPage = () => {
         const accessAppsList = accessApp.split(", ");
@@ -52,6 +65,19 @@ export default function YardManage({ userData }) {
         }
     }
 
+    const [modal, setModal] = useState(false);
+    const toggle = () => setModal(!modal);
+
+    const handleCreatedCB = () => {
+        refreshData()
+        setModal(false)
+    }
+
+    const handleClosePost = () => {
+        setModal(false)
+    }
+
+
     return (
         <>
             <Head>
@@ -62,82 +88,28 @@ export default function YardManage({ userData }) {
             </Head>
             <main>
                 <Layout pages={layoutPages} user={{ fullname, name, email }}>
-                    {renderContent(name, userData)}
+                    
+                    <div>
+                        <h2 className="title-manage">Quản lý vựa VeChai</h2>
+                        <p style={{ color: 'rgb(122, 64, 222)', cursor: 'pointer' }} onClick={toggle}>Thêm vựa</p>
+                    </div>
+                    <div className="table-manage">
+                        <div className="map-yard">
+                            <Map markerList={yards} ></Map>
+                        </div>
+                        <TableScrapYard yards={yards}></TableScrapYard>
+                    </div>
+
+                    <Modal isOpen={modal} toggle={toggle}>
+                        <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Thêm Vựa VeChai</span></ModalHeader>
+                        <ModalBody>
+                            <CreateYard userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreateYard>
+                        </ModalBody>
+                    </Modal>
+
                 </Layout>
             </main>
         </>
     );
 
-}
-
-function YardManagePage({ userData }) {
-    const Map = dynamic(() => import("@/components/Map"), {
-        ssr: false,
-        loading: () => <p>Loading...</p>,
-    });
-
-    const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
-
-    const handleCreatedCB = () => {
-        setModal(false)
-    }
-
-    const handleClosePost = () => {
-        setModal(false)
-    }
-
-    return (
-        <>
-            <div>
-                <h2 className="title-manage">Quản lý vựa VeChai</h2>
-                <p style={{color: 'rgb(122, 64, 222)', cursor: 'pointer'}} onClick={toggle}>Thêm vựa</p>
-            </div>
-            <div className="table-manage">
-                <div className="map-yard">
-                    <Map></Map>
-                </div>
-                <Table>
-                    <thead>
-                        <tr>
-                            <th>
-                                #
-                            </th>
-                            <th>
-                                Hình ảnh
-                            </th>
-                            <th>
-                                Tên vựa
-                            </th>
-                            <th>
-                                Thời gian mở cửa
-                            </th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">
-                                1
-                            </th>
-                            <td>
-                                Mark
-                            </td>
-                            <td>
-                                Otto
-                            </td>
-                            <td>
-                                @mdo
-                            </td>
-                        </tr>
-                    </tbody>
-                </Table>
-            </div>
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Thêm Vựa VeChai</span></ModalHeader>
-                <ModalBody>
-                    <CreateYard handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreateYard>
-                </ModalBody>
-            </Modal>
-        </>
-    )
 }

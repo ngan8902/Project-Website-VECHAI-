@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { FcShop, FcNews } from 'react-icons/fc';
-import {BsPinMapFill} from 'react-icons/bs'
+import { BsPinMapFill } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
 import { pages } from "@/utils/contanst";
 import { NextResponse } from "next/server";
@@ -53,6 +53,7 @@ export default function Dashboard({ userData }) {
     };
 
     const detectAccessPage = () => {
+        if (!accessApp) return
         const accessAppsList = accessApp.split(", ");
         if (accessAppsList && Array.isArray(accessAppsList)) {
             const userPages = _.filter(pages, (page) => {
@@ -80,197 +81,7 @@ export default function Dashboard({ userData }) {
     );
 }
 
-function BuyerComponent({ user = {} }) {
-    const [posts, setPosts] = useState([]);
-
-    useEffect(() => {
-        axios.get("/api/post?limit=5").then((res) => {
-            console.log(res);
-            if (res && res.data) {
-                const { data } = res.data;
-                setPosts(data);
-            }
-        });
-    }, []);
-
-    const Map = dynamic(() => import("@/components/Map"), {
-        ssr: false,
-        loading: () => <p>Loading...</p>,
-    });
-
-    return <>
-        {/* <!-- ======Section======= --> */}
-        <div className="section flex flex-sb">
-            {/* <!-- Section Left --> */}
-            <div className="section-left">
-                {/* <!-- ======Banner======= --> */}
-                <div>
-                    <Map></Map>
-                </div>
-
-                <div className="nfts">
-                    <div className="trending heading flex flex-sb">
-                        <h2>Bài đăng về ve chai cần bán</h2>
-                    </div>
-
-                    {/* <!-- ======Categories======= --> */}
-
-                    <div className="categories flex flex-sb">
-                        <div className="category flex">
-                            <div className="icon">🔥</div>
-                            <p>Tin nổi bật</p>
-                        </div>
-
-                        <div className="category flex">
-                            <FcNews style={{ marginRight: '10px' }} className='icon' />
-                            <p>Bảng tin</p>
-                        </div>
-
-                        <div className="category flex">
-                            <div className="icon">🕹️</div>
-                            <p>Gần bạn</p>
-                        </div>
-
-                        <div className="category flex">
-                            <FcShop style={{ marginRight: '10px' }} className='icon' />
-                            <p>Các vựa</p>
-                        </div>
-                    </div>
-
-                    {/*Các bài viết*/}
-                    <PostDashboard posts={posts}></PostDashboard>
-                    {/*Sroll */}
-                    <scroll></scroll>
-
-                </div>
-
-            </div>
-
-            {/* <!-- Section Right --> */}
-            <div className="section-right">
-
-                <div className="top-yards">
-                    <div className="heading flex flex-sb">
-                        <h2>Top Vựa Ve Chai</h2>
-                        <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                    </div>
-
-                </div>
-                <div className="top-creators">
-                    <div className="heading flex flex-sb">
-                        <h2>Top Thu Mua</h2>
-                        <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                    </div>
-
-                    <div className="creator flex flex-sb">
-                        <div className="follow-creator flex">
-                            <img
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                alt=""
-                            />
-                            <div className="creator-details">
-                                <h3>Huy Nguyễn</h3>
-                                <p>@huynguyen</p>
-                            </div>
-                        </div>
-
-                        <a href="#" className="btn following">
-                            Đang theo
-                        </a>
-                    </div>
-
-                    <div className="creator flex flex-sb">
-                        <div className="follow-creator flex">
-                            <img
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                alt=""
-                            />
-                            <div className="creator-details">
-                                <h3>Ngân Nguyễn</h3>
-                                <p>@bichngan</p>
-                            </div>
-                        </div>
-
-                        <a href="#" className="btn follow following">
-                            Theo dõi
-                        </a>
-                    </div>
-
-                    <div className="creator flex flex-sb">
-                        <div className="follow-creator flex">
-                            <img
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                alt=""
-                            />
-                            <div className="creator-details">
-                                <h3>Hassnain Haider</h3>
-                                <p>@hassnain</p>
-                            </div>
-                        </div>
-
-                        <a href="#" className="btn follow following">
-                            Theo dõi
-                        </a>
-                    </div>
-
-                    <div className="creator flex flex-sb">
-                        <div className="follow-creator flex">
-                            <img
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                alt=""
-                            />
-                            <div className="creator-details">
-                                <h3>Hassnain Haider</h3>
-                                <p>@hassnain</p>
-                            </div>
-                        </div>
-
-                        <a href="#" className="btn follow following">
-                            Theo dõi
-                        </a>
-                    </div>
-
-                    <div className="creator flex flex-sb">
-                        <div className="follow-creator flex">
-                            <img
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                alt=""
-                            />
-                            <div className="creator-details">
-                                <h3>Hassnain Haider</h3>
-                                <p>@hassnain</p>
-                            </div>
-                        </div>
-
-                        <a href="#" className="btn follow following">
-                            Theo dõi
-                        </a>
-                    </div>
-
-                    <div className="creator flex flex-sb">
-                        <div className="follow-creator flex">
-                            <img
-                                src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                alt=""
-                            />
-                            <div className="creator-details">
-                                <h3>Hassnain Haider</h3>
-                                <p>@hassnain</p>
-                            </div>
-                        </div>
-
-                        <a href="#" className="btn follow following">
-                            Theo dõi
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-        {/* <!-- ======End Section======= --> */}
-    </>
-}
-
-function SalerComponent({ userData }) {
+function BuyerComponent({ userData = [] }) {
     const Map = dynamic(() => import("@/components/Map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
@@ -281,17 +92,17 @@ function SalerComponent({ userData }) {
 
     useEffect(() => {
         refreshPosts()
-      }, []);
-    
-      const refreshPosts = () => {
+    }, []);
+
+    const refreshPosts = () => {
         axios.get("/api/post?limit=5").then((res) => {
-          console.log(res);
-          if (res && res.data) {
-            const { data } = res.data;
-            setPosts(data);
-          }
+            console.log(res);
+            if (res && res.data) {
+                const { data } = res.data;
+                setPosts(data);
+            }
         });
-      }
+    }
     const toggle = () => setModal(!modal);
 
     const handleCreatedCB = () => {
@@ -299,7 +110,224 @@ function SalerComponent({ userData }) {
         refreshPosts()
     }
 
-    const handleClosePost =() => {
+    const handleClosePost = () => {
+        setModal(false)
+    }
+    return (
+        <>
+            {/* <!-- ======Section======= --> */}
+            <div className="section flex flex-sb">
+                {/* <!-- Section Left --> */}
+                <div className="section-left">
+                    {/* <!-- ======Banner======= --> */}
+                    <p className='maptitle'>Bản đồ chỉ vị trí của các vựa ve chai gần bạn</p>
+                    <div>
+                        <Map></Map>
+                    </div>
+
+                    <div className="nfts">
+                        <div className="trending heading flex flex-sb">
+                            <h2>Bài đăng về ve chai cần bán</h2>
+                            <p onClick={toggle}>Tạo bài viết</p>
+                        </div>
+
+                        {/* <!-- ======Categories======= --> */}
+
+                        <div className="categories flex flex-sb">
+                            <div className="category flex">
+                                <div className="icon">🔥</div>
+                                <p>Tin nổi bật</p>
+                            </div>
+
+                            <div className="category flex">
+                                <FcNews style={{ marginRight: '10px' }} className='icon' />
+                                <p>Bảng tin</p>
+                            </div>
+
+                            <div className="category flex">
+                                <div className="icon">🕹️</div>
+                                <p>Gần bạn</p>
+                            </div>
+
+                            <div className="category flex">
+                                <FcShop style={{ marginRight: '10px' }} className='icon' />
+                                <p>Các vựa</p>
+                            </div>
+                        </div>
+                        {/* <!-- =====Bai Viet===== --> */}
+                        <PostDashboard posts={posts}></PostDashboard>
+                    </div>
+                </div>
+
+                {/* <!-- Section Right --> */}
+                <div className="section-right">
+
+                    <div className="top-yards">
+                        <div className="heading flex flex-sb">
+                            <h2>Top Vựa Ve Chai</h2>
+                            <p style={{ fontSize: '1rem' }}>Xem thêm</p>
+                        </div>
+                        <div className='yards'>
+                            <div className='nameshop'>
+                                <BsPinMapFill className='yard-icon'></BsPinMapFill>
+                                <h4>Vựa Ve Chai</h4>
+                            </div>
+                            <p>162 Đ. Hiệp Thành 13, Hiệp Thành, Quận 12, Thành phố Hồ Chí Minh</p>
+                        </div>
+
+                    </div>
+                    <div className="top-creators">
+                        <div className="heading flex flex-sb">
+                            <h2>Top Thu Mua</h2>
+                            <p style={{ fontSize: '1rem' }}>Xem thêm</p>
+                        </div>
+
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
+                                <img
+                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                    alt=""
+                                />
+                                <div className="creator-details">
+                                    <h3>Huy Nguyễn</h3>
+                                    <p>@huynguyen</p>
+                                </div>
+                            </div>
+
+                            <a href="#" className="btn following">
+                                Đang theo
+                            </a>
+                        </div>
+
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
+                                <img
+                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                    alt=""
+                                />
+                                <div className="creator-details">
+                                    <h3>Ngân Nguyễn</h3>
+                                    <p>@bichngan</p>
+                                </div>
+                            </div>
+
+                            <a href="#" className="btn follow following">
+                                Theo dõi
+                            </a>
+                        </div>
+
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
+                                <img
+                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                    alt=""
+                                />
+                                <div className="creator-details">
+                                    <h3>Hassnain Haider</h3>
+                                    <p>@hassnain</p>
+                                </div>
+                            </div>
+
+                            <a href="#" className="btn follow following">
+                                Theo dõi
+                            </a>
+                        </div>
+
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
+                                <img
+                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                    alt=""
+                                />
+                                <div className="creator-details">
+                                    <h3>Hassnain Haider</h3>
+                                    <p>@hassnain</p>
+                                </div>
+                            </div>
+
+                            <a href="#" className="btn follow following">
+                                Theo dõi
+                            </a>
+                        </div>
+
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
+                                <img
+                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                    alt=""
+                                />
+                                <div className="creator-details">
+                                    <h3>Hassnain Haider</h3>
+                                    <p>@hassnain</p>
+                                </div>
+                            </div>
+
+                            <a href="#" className="btn follow following">
+                                Theo dõi
+                            </a>
+                        </div>
+
+                        <div className="creator flex flex-sb">
+                            <div className="follow-creator flex">
+                                <img
+                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
+                                    alt=""
+                                />
+                                <div className="creator-details">
+                                    <h3>Hassnain Haider</h3>
+                                    <p>@hassnain</p>
+                                </div>
+                            </div>
+
+                            <a href="#" className="btn follow following">
+                                Theo dõi
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {/* <!-- ======End Section======= --> */}
+
+            <Modal isOpen={modal} toggle={toggle}>
+                <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Tạo bài viết mới</span></ModalHeader>
+                <ModalBody>
+                    <CreatePost userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreatePost>
+                </ModalBody>
+            </Modal>
+        </>
+    );
+}
+
+function SalerComponent({ userData = [] }) {
+    const Map = dynamic(() => import("@/components/Map"), {
+        ssr: false,
+        loading: () => <p>Loading...</p>,
+    });
+
+    const [posts, setPosts] = useState([]);
+    const [modal, setModal] = useState(false);
+
+    useEffect(() => {
+        refreshPosts()
+    }, []);
+
+    const refreshPosts = () => {
+        axios.get("/api/post?limit=5").then((res) => {
+            console.log(res);
+            if (res && res.data) {
+                const { data } = res.data;
+                setPosts(data);
+            }
+        });
+    }
+    const toggle = () => setModal(!modal);
+
+    const handleCreatedCB = () => {
+        setModal(false)
+        refreshPosts()
+    }
+
+    const handleClosePost = () => {
         setModal(false)
     }
 
@@ -494,214 +522,46 @@ function YardComponent({ userData }) {
         loading: () => <p>Loading...</p>,
     });
 
-    const [posts, setPosts] = useState([]);
+    const [yards, setYards] = useState([]);
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
-        refreshPosts()
-      }, []);
-    
-      const refreshPosts = () => {
-        axios.get("/api/post?limit=5").then((res) => {
-          console.log(res);
-          if (res && res.data) {
-            const { data } = res.data;
-            setPosts(data);
-          }
-        });
-      }
-    const toggle = () => setModal(!modal);
+        refreshYard()
+    }, []);
 
-    const handleCreatedCB = () => {
-        setModal(false)
-        refreshPosts()
+    const refreshYard = () => {
+        axios.get("/api/yard").then((res) => {
+            console.log(res);
+            if (res && res.data) {
+                const { data } = res.data;
+                setYards(data);
+            }
+        });
     }
 
-    const handleClosePost =() => {
-        setModal(false)
+    const handleClickMapCb = () => {
+
     }
 
     return (
         <>
-            {/* <!-- ======Section======= --> */}
-            <div className="section flex flex-sb">
-                {/* <!-- Section Left --> */}
-                <div className="section-left">
-                    {/* <!-- ======Banner======= --> */}
-                    <p className='maptitle'>Bản đồ chỉ vị trí của các vựa ve chai gần bạn</p>
-                    <div>
-                        <Map></Map>
+            <div style={{ marginTop: '10px', display: "flex" }}>
+                <Map handleClickMapCb={handleClickMapCb}></Map>
+                <div className="top-yards">
+                    <div className="heading flex flex-sb">
+                        <h2>Top Vựa Ve Chai</h2>
+                        <p style={{ fontSize: '1rem' }}>Xem thêm</p>
+                    </div>
+                    <div className='yards'>
+                        <div className='nameshop'>
+                            <BsPinMapFill className='yard-icon'></BsPinMapFill>
+                            <h4>Vựa Ve Chai</h4>
+                        </div>
+                        <p>162 Đ. Hiệp Thành 13, Hiệp Thành, Quận 12, Thành phố Hồ Chí Minh</p>
                     </div>
 
-                    <div className="nfts">
-                        <div className="trending heading flex flex-sb">
-                            <h2>Bài đăng về ve chai cần bán</h2>
-                            <p onClick={toggle}>Tạo bài viết</p>
-                        </div>
-
-                        {/* <!-- ======Categories======= --> */}
-
-                        <div className="categories flex flex-sb">
-                            <div className="category flex">
-                                <div className="icon">🔥</div>
-                                <p>Tin nổi bật</p>
-                            </div>
-
-                            <div className="category flex">
-                                <FcNews style={{ marginRight: '10px' }} className='icon' />
-                                <p>Bảng tin</p>
-                            </div>
-
-                            <div className="category flex">
-                                <div className="icon">🕹️</div>
-                                <p>Gần bạn</p>
-                            </div>
-
-                            <div className="category flex">
-                                <FcShop style={{ marginRight: '10px' }} className='icon' />
-                                <p>Các vựa</p>
-                            </div>
-                        </div>
-                        {/* <!-- =====Bai Viet===== --> */}
-                        <PostDashboard posts={posts}></PostDashboard>
-                    </div>
-                </div>
-
-                {/* <!-- Section Right --> */}
-                <div className="section-right">
-
-                    <div className="top-yards">
-                        <div className="heading flex flex-sb">
-                            <h2>Top Vựa Ve Chai</h2>
-                            <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                        </div>
-                        <div className='yards'>
-                            <div className='nameshop'>
-                                <BsPinMapFill className='yard-icon'></BsPinMapFill>
-                                <h4>Vựa Ve Chai</h4>
-                            </div>
-                            <p>162 Đ. Hiệp Thành 13, Hiệp Thành, Quận 12, Thành phố Hồ Chí Minh</p>
-                        </div>
-
-                    </div>
-                    <div className="top-creators">
-                        <div className="heading flex flex-sb">
-                            <h2>Top Thu Mua</h2>
-                            <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Huy Nguyễn</h3>
-                                    <p>@huynguyen</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn following">
-                                Đang theo
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Ngân Nguyễn</h3>
-                                    <p>@bichngan</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
-            {/* <!-- ======End Section======= --> */}
-
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Tạo bài viết mới</span></ModalHeader>
-                <ModalBody>
-                    <CreatePost userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreatePost>
-                </ModalBody>
-            </Modal>
         </>
     );
 }

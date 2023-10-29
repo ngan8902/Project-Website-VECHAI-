@@ -4,7 +4,7 @@ import react from 'react'
 import { Form, FormGroup, Label, Col, Input, Button, Row } from 'reactstrap'
 import UploadComponent from '@/components/uploadFile'
 import { uploadFileToStorage } from '@/helper/firebase.hepler'
-import axios from '@/helper/axios.helper'
+import axios from 'axios'
 
 export default function createPostPage({ handleCreatedCB, userData, handleClosePost }) {
     const { id } = userData

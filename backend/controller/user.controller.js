@@ -18,21 +18,21 @@ class CustomerController {
     static signUp = async (req, res, next) => {
         try {
             // 1.
-            const { password, email, fullname, phonenumber, role_id  } = req.body
-            if(!password || !email || !fullname || !phonenumber || !role_id) throw new Error('Inputs are not valid!!')
+            const { password, email, fullname, phonenumber, role_id } = req.body
+            if (!password || !email || !fullname || !phonenumber || !role_id) throw new Error('Inputs are not valid!!')
             // 2.
             const foundCustomer = await UserModel.getCustomerByEmail(email)
-            if(foundCustomer) throw new Error(`Customer existing`)
+            if (foundCustomer) throw new Error(`Customer existing`)
             // 3.
             const passwordCipher = CryptoJS.AES.encrypt(password, SECRECT_KEY).toString();
             // 4.
-            const results = await UserModel.create({ 
-                email: email, 
-                fullname: fullname, 
+            const results = await UserModel.create({
+                email: email,
+                fullname: fullname,
                 password: passwordCipher,
                 phonenumber, role_id
             })
-            if(results) {
+            if (results) {
                 // send mail
                 sendMail({
                     to: email,
@@ -76,17 +76,17 @@ class CustomerController {
             // 1.
             const foundCustomer = await UserModel.getCustomerByEmail(email)
             // 2.
-            if(!foundCustomer) throw new Error('User not exist!')
+            if (!foundCustomer) throw new Error('User not exist!')
             // 3.
             const bytes = CryptoJS.AES.decrypt(foundCustomer.password, SECRECT_KEY)
             const passwordText = bytes.toString(CryptoJS.enc.Utf8)
             // 4.
-            if(password !== passwordText) throw new Error('Password not match')
+            if (password !== passwordText) throw new Error('Password not match')
             // 5.
             const token = await JWT.sign({ id: foundCustomer.id, email: foundCustomer.email }, SECRECT_KEY, { expiresIn: '12h' })
             // 6.
             const updateResult = await UserModel.updateToken({ id: foundCustomer.id, token: token })
-            if(!updateResult) throw new Error('Update token fail')
+            if (!updateResult) throw new Error('Update token fail')
             // 7.
             res.status(200).json({
                 code: 200,
@@ -97,7 +97,7 @@ class CustomerController {
                 }
             })
 
-        } catch(err) {
+        } catch (err) {
             res.status(500).json({
                 code: 500,
                 message: 'Error:::',
@@ -107,13 +107,30 @@ class CustomerController {
     }
 
     static getCustomer = async (req, res, next) => {
+        try {
+            const results = await RoleModel.getRole()
+            console.log(results)
+            if (!results) throw new Error("Don't have data");
+            res.status(200).json({
+                message: 'Get roles success!',
+                data: results
+            })
 
+        }
+        catch (err) {
+            console.log(err)
+            res.status(500).json({
+                code: 500,
+                message: 'Error::: c',
+                error: err.message
+            })
+        }
     }
 
     static authenCustomer = async (req, res, next) => {
         const customerId = req.headers["customer-id"]
         const customerEmail = req.headers["customer-email"]
-        const customerRole =req.headers["customer-role"]
+        const customerRole = req.headers["customer-role"]
 
         res.json({
             customerId, customerEmail, customerRole

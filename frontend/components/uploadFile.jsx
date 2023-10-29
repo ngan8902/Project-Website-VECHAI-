@@ -41,7 +41,7 @@ export default function UploadFile({ uploadCallBack }) {
           console.log(" > " + fileInput)
           uploadIcon.innerHTML = 'check_circle';
           dragDropText.innerHTML = 'File Dropped Successfully!';
-          document.querySelector(".label").innerHTML = `drag & drop or <span class="browse-files"> <input type="file" class="default-file-input" style=""/> <span class="browse-files-text" style="top: 0;"> browse file</span></span>`;
+          document.querySelector(".label").innerHTML = `drag & drop or <span class="browse-files"> <input type="file" class="default-file-input" style=""/> <span class="browse-files-text" style="top: 0;display: none;"> browse file</span></span>`;
           //uploadButton.innerHTML = `Upload`;
           fileName.innerHTML = fileInput.files[0].name;
           fileSize.innerHTML = (fileInput.files[0].size/1024).toFixed(1) + " KB";
@@ -50,28 +50,6 @@ export default function UploadFile({ uploadCallBack }) {
           fileFlag = 0;
           uploadCallBack && uploadCallBack(fileInput)
       });
-      
-    //   uploadButton.addEventListener("click", () => {
-    //       let isFileUploaded = fileInput.value;
-    //       if(isFileUploaded != '') {
-    //           if (fileFlag == 0) {
-    //               fileFlag = 1;
-    //               var width = 0;
-    //               var id = setInterval(frame, 50);
-    //               function frame() {
-    //                     if (width >= 390) {
-    //                       clearInterval(id);
-    //                       uploadButton.innerHTML = `<span class="material-icons-outlined upload-button-icon"> check_circle </span> Uploaded`;
-    //                     } else {
-    //                       width += 5;
-    //                       progressBar.style.width = width + "px";
-    //                     }
-    //               }
-    //             }
-    //       } else {
-    //           cannotUploadMessage.style.cssText = "display: flex; animation: fadeIn linear 1.5s;";
-    //       }
-    //   });
       
       cancelAlertButton.addEventListener("click", () => {
           cannotUploadMessage.style.cssText = "display: none;";
@@ -128,7 +106,7 @@ export default function UploadFile({ uploadCallBack }) {
     <form className="uploadForm form-container" enctype='multipart/form-data'>
         <div className="upload-files-container">
             <div className="drag-file-area">
-                <span className="material-icons-outlined upload-icon"> Tải ảnh </span>
+                <span className="material-icons-outlined upload-icon"></span>
                 <h3 className="dynamic-message"> Kéo thả ảnh vào đây </h3>
                 <label className="label"> hoặc <span className="browse-files"> <input type="file" className="default-file-input"/> <span className="browse-files-text">Chọn ảnh</span> <span>từ thiết bị</span> </span> </label>
             </div>

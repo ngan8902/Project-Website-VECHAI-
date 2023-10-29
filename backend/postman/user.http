@@ -1,3 +1,7 @@
+### GET Get customer
+GET  http://localhost:8000/api/customer
+content-type: application/json
+
 ### POST Create customer
 POST http://localhost:8000/api/customer/signup
 content-type: application/json

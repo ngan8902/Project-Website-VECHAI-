@@ -105,7 +105,7 @@ class CustomerController {
     }
 
     static getCustomer = async (req, res, next) => {
-
+        
     }
 
     static authenCustomer = async (req, res, next) => {
