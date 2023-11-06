@@ -50,7 +50,7 @@ export default function Layout({ pages = [], user = {}, children }) {
                                 <ion-icon name="log-out-outline"></ion-icon>
                             </div>
 
-                            <p>Logout</p>
+                            <p>Đăng xuất</p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +85,7 @@ export default function Layout({ pages = [], user = {}, children }) {
                                 src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
                                 alt=""
                             />
-                             <p>{ user.fullname }</p>
+                             <p style={{padding: '0px'}}>{ user.fullname }</p>
                             <ion-icon name="chevron-down-outline"></ion-icon>
                         </div>
                     </div>

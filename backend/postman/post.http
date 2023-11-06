@@ -7,7 +7,7 @@ POST  http://localhost:8000/api/post/create
 content-type: application/json
 
 {
-    "userId": 1,
+    "userId": 7,
     "name": "Thanh lý ve chai",
     "content": "Tôi cần thanh lý tất cả linh kiện ve chai trong hình.",
     "image": "https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/nft-3.jpg",

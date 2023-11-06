@@ -1,12 +1,12 @@
 'use strict'
 
 import react from 'react'
-import { Form, FormGroup, Label, Col, Input, Button, Row } from 'reactstrap'
+import { Form, FormGroup, Label, Col, Input, Row } from 'reactstrap'
 import UploadComponent from '@/components/uploadFile'
 import { uploadFileToStorage } from '@/helper/firebase.hepler'
 import axios from 'axios'
 
-export default function createPostPage({ handleCreatedCB, userData, handleClosePost }) {
+export default function CreatePostPage({ handleCreatedCB, userData, handleClosePost }) {
     const { id } = userData
     const [createPost, setCreatePost] = react.useState({
         name: null, userId: id, image: null, content: null, expect_price: null
@@ -98,7 +98,9 @@ export default function createPostPage({ handleCreatedCB, userData, handleCloseP
                     </Col>
                 </FormGroup>
             </Form>
-            <UploadComponent uploadCallBack={handledUploadFile}></UploadComponent>
+            <div style={{ marginLeft: "35%" }}>
+                <UploadComponent uploadCallBack={handledUploadFile}></UploadComponent>
+            </div>
             <hr></hr>
             {
                 errMsg ? <code>{errMsg}</code> : null

@@ -6,6 +6,7 @@ import { icon } from "leaflet"
 import { useMapEvents } from 'react-leaflet/hooks'
 import "leaflet/dist/leaflet.css";
 import style from '@/styles/Dashboard.module.css'
+import Image from "next/image";
 
 
 export default function Map({ markerList = [],
@@ -53,18 +54,29 @@ export default function Map({ markerList = [],
                         return (<Marker position={marker.position} key={index}
                             icon={getIcon(marker)}>
                             <Popup>
-                                {marker.popupContent}
+                                <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between" }}>
+                                    <Image
+                                        loader={() => { return marker.image }}
+                                        src="https://via.placeholder.com/500x500"
+                                        alt="Picture of the author"
+                                        width={60}
+                                        height={60}
+                                    />
+                                    <div style={{marginLeft: "10px"}}>
+                                        {marker.popupContent}
+                                    </div>
+                                </div>
                             </Popup>
                         </Marker>
                         )
                     })
 
                 }
-            {
-                handleClickMapCb ? <Mark></Mark> : null
-            }
+                {
+                    handleClickMapCb ? <Mark></Mark> : null
+                }
 
-        </MapContainer >
+            </MapContainer >
 
         </>
     )

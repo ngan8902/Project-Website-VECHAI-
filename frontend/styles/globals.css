@@ -467,6 +467,8 @@ body {
 
 .section {
   margin: 30px 0;
+  display: flex;
+  align-items: flex-start;
 }
 
 /* =====Section Left======= */
@@ -572,7 +574,7 @@ body {
   padding: 10px 20px 20px 20px;
   border-radius: 25px;
   transition: 0.4s linear;
-  margin: 10px 5px;
+  margin: 10px;
 }
 
 .nft img {
@@ -639,25 +641,50 @@ body {
 }
 
 .top-yards {
-  width: 100%;
+  width: auto;
   padding: 15px;
+  height: 300px;
+  overflow-y: clip;
   background: #fff;
-  border-radius: 15px;
   transition: 0.3s linear;
-  margin: 10px 10px 10px 20px;
+  margin: 0px 0px 10px 20px;
 }
+
+.top-yards:hover{
+  overflow-y: scroll;
+}
+
+.top-yards::-webkit-scrollbar {
+  width: 10px;
+  background-color: #F5F5F5;
+}
+
+.top-yards::-webkit-scrollbar-track {
+  border-radius: 10px;
+  background: rgba(0,0,0,0.1);
+  border: 1px solid #7d7b7bb5;
+}
+
+.top-yards::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: #2e2b2b;
+  border: 1px solid #d8d4d4;
+}
+
 
 .top-yards .heading {
   margin-bottom: 20px;
+  position: relative;
 }
 
 .top-yards .heading h2 {
-  font-size: 18px;
+  font-size: 20px;
 }
 
 .nameshop h4{
   color: rgb(77, 76, 76);
   padding: 10px;
+  font-size: 1.1rem;
 }
 
 .nameshop{
@@ -676,9 +703,8 @@ body {
   margin-top: 35%;
   padding: 15px;
   background: #fff;
-  border-radius: 20px;
   transition: 0.3s linear;
-  margin: 20px 10px 10px 20px;
+  margin: 50px 10px 10px 20px;
 }
 
 .top-creators .heading {
@@ -874,7 +900,8 @@ body {
 }
 
 .darkMode .navcontent,
-.darkMode .title-manage{
+.darkMode .title-manage,
+.darkMode .posttitle{
   color: #fff;
 }
 
@@ -1254,4 +1281,19 @@ body {
 .title-manage{
   color: black;
   padding: 10px;
+}
+
+.table-yard:hover {
+  background: rgb(150, 145, 145);
+  cursor: pointer;
+}
+
+.posttitle{
+  color: black;
+}
+
+.post-content{
+    display: grid;
+    grid-template-columns: 1fr;
+    justify-items: center;
 }

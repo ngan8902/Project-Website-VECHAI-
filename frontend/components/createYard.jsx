@@ -7,7 +7,6 @@ import axios from 'axios'
 
 import { uploadFileToStorage } from "@/helper/firebase.hepler"
 import UploadComponent from '@/components/uploadFile'
-import _ from 'lodash'
 
 export default function CreateYard({ handleCreatedCB, userData, handleClosePost }) {
     let selectedLatlng = null

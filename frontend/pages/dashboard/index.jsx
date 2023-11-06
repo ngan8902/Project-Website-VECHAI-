@@ -1,18 +1,19 @@
 import Head from 'next/head';
 import dynamic from 'next/dynamic';
 import { FcShop, FcNews } from 'react-icons/fc';
-import { BsPinMapFill } from 'react-icons/bs'
 import { useState, useEffect } from 'react';
 import { pages } from "@/utils/contanst";
 import { NextResponse } from "next/server";
 import _ from 'lodash';
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody } from 'reactstrap';
 import axios from 'axios';
 
 import Axios from "@/helper/axios.helper";
 import Layout from '@/components/layout';
-import CreatePost from "@/components/createPost"
 import PostDashboard from "@/components/postDashboard";
+import TopYards from '@/components/topYard';
+import CreatePostPage from '@/components/createPost';
+import User from '@/components/user';
 
 export async function getServerSideProps({ req, res }) {
     const token = req.cookies["vechaitoken"];
@@ -44,7 +45,7 @@ export default function Dashboard({ userData }) {
         if (roleName === "saler") {
             return <SalerComponent userData={userData}></SalerComponent>;
         } else if (roleName === "buyer") {
-            return <BuyerComponent></BuyerComponent>;
+            return <BuyerComponent userData={userData}></BuyerComponent>;
         } else if (roleName === "yard") {
             return <YardComponent></YardComponent>;
         } else {
@@ -88,10 +89,13 @@ function BuyerComponent({ userData = [] }) {
     });
 
     const [posts, setPosts] = useState([]);
+    const [yards, setYards] = useState([]);
+    const [user, setUser] = useState([]);
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
         refreshPosts()
+        refreshYard()
     }, []);
 
     const refreshPosts = () => {
@@ -100,6 +104,20 @@ function BuyerComponent({ userData = [] }) {
             if (res && res.data) {
                 const { data } = res.data;
                 setPosts(data);
+            }
+        });
+    }
+
+    const refreshYard = () => {
+        axios.get("/api/yard").then((res) => {
+            if (res && res.data) {
+                const { data } = res.data;
+                data.forEach(yard => {
+                    if (!yard["lag_lat"]) return
+                    yard["position"] = yard["lag_lat"].split(', ')
+                    yard["popupContent"] = yard.address
+                });
+                setYards(data);
             }
         });
     }
@@ -122,7 +140,7 @@ function BuyerComponent({ userData = [] }) {
                     {/* <!-- ======Banner======= --> */}
                     <p className='maptitle'>Bản đồ chỉ vị trí của các vựa ve chai gần bạn</p>
                     <div>
-                        <Map></Map>
+                        <Map markerList={yards}></Map>
                     </div>
 
                     <div className="nfts">
@@ -162,128 +180,9 @@ function BuyerComponent({ userData = [] }) {
                 {/* <!-- Section Right --> */}
                 <div className="section-right">
 
-                    <div className="top-yards">
-                        <div className="heading flex flex-sb">
-                            <h2>Top Vựa Ve Chai</h2>
-                            <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                        </div>
-                        <div className='yards'>
-                            <div className='nameshop'>
-                                <BsPinMapFill className='yard-icon'></BsPinMapFill>
-                                <h4>Vựa Ve Chai</h4>
-                            </div>
-                            <p>162 Đ. Hiệp Thành 13, Hiệp Thành, Quận 12, Thành phố Hồ Chí Minh</p>
-                        </div>
+                    <TopYards yards={yards}></TopYards>
+                    <User user={user}></User>
 
-                    </div>
-                    <div className="top-creators">
-                        <div className="heading flex flex-sb">
-                            <h2>Top Thu Mua</h2>
-                            <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Huy Nguyễn</h3>
-                                    <p>@huynguyen</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn following">
-                                Đang theo
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Ngân Nguyễn</h3>
-                                    <p>@bichngan</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
             {/* <!-- ======End Section======= --> */}
@@ -291,7 +190,7 @@ function BuyerComponent({ userData = [] }) {
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Tạo bài viết mới</span></ModalHeader>
                 <ModalBody>
-                    <CreatePost userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreatePost>
+                    <CreatePostPage userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreatePostPage>
                 </ModalBody>
             </Modal>
         </>
@@ -305,10 +204,13 @@ function SalerComponent({ userData = [] }) {
     });
 
     const [posts, setPosts] = useState([]);
+    const [yards, setYards] = useState([]);
+    const [user, setUser] = useState([]);
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
         refreshPosts()
+        refreshYard()
     }, []);
 
     const refreshPosts = () => {
@@ -320,6 +222,21 @@ function SalerComponent({ userData = [] }) {
             }
         });
     }
+
+    const refreshYard = () => {
+        axios.get("/api/yard").then((res) => {
+            if (res && res.data) {
+                const { data } = res.data;
+                data.forEach(yard => {
+                    if (!yard["lag_lat"]) return
+                    yard["position"] = yard["lag_lat"].split(', ')
+                    yard["popupContent"] = yard.address
+                });
+                setYards(data);
+            }
+        });
+    }
+
     const toggle = () => setModal(!modal);
 
     const handleCreatedCB = () => {
@@ -340,7 +257,7 @@ function SalerComponent({ userData = [] }) {
                     {/* <!-- ======Banner======= --> */}
                     <p className='maptitle'>Bản đồ chỉ vị trí của các vựa ve chai gần bạn</p>
                     <div>
-                        <Map></Map>
+                        <Map markerList={yards}></Map>
                     </div>
 
                     <div className="nfts">
@@ -380,128 +297,9 @@ function SalerComponent({ userData = [] }) {
                 {/* <!-- Section Right --> */}
                 <div className="section-right">
 
-                    <div className="top-yards">
-                        <div className="heading flex flex-sb">
-                            <h2>Top Vựa Ve Chai</h2>
-                            <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                        </div>
-                        <div className='yards'>
-                            <div className='nameshop'>
-                                <BsPinMapFill className='yard-icon'></BsPinMapFill>
-                                <h4>Vựa Ve Chai</h4>
-                            </div>
-                            <p>162 Đ. Hiệp Thành 13, Hiệp Thành, Quận 12, Thành phố Hồ Chí Minh</p>
-                        </div>
+                    <TopYards yards={yards}></TopYards>
+                    <User user={user}></User>
 
-                    </div>
-                    <div className="top-creators">
-                        <div className="heading flex flex-sb">
-                            <h2>Top Thu Mua</h2>
-                            <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Huy Nguyễn</h3>
-                                    <p>@huynguyen</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn following">
-                                Đang theo
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Ngân Nguyễn</h3>
-                                    <p>@bichngan</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-
-                        <div className="creator flex flex-sb">
-                            <div className="follow-creator flex">
-                                <img
-                                    src="https://raw.githubusercontent.com/programmercloud/nft-dashboard/main/img/user.png"
-                                    alt=""
-                                />
-                                <div className="creator-details">
-                                    <h3>Hassnain Haider</h3>
-                                    <p>@hassnain</p>
-                                </div>
-                            </div>
-
-                            <a href="#" className="btn follow following">
-                                Theo dõi
-                            </a>
-                        </div>
-                    </div>
                 </div>
             </div>
             {/* <!-- ======End Section======= --> */}
@@ -509,21 +307,20 @@ function SalerComponent({ userData = [] }) {
             <Modal isOpen={modal} toggle={toggle}>
                 <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Tạo bài viết mới</span></ModalHeader>
                 <ModalBody>
-                    <CreatePost userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreatePost>
+                    <CreatePostPage userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreatePostPage>
                 </ModalBody>
             </Modal>
         </>
     );
 }
 
-function YardComponent({ userData }) {
+function YardComponent() {
     const Map = dynamic(() => import("@/components/Map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
     });
 
     const [yards, setYards] = useState([]);
-    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         refreshYard()
@@ -531,36 +328,24 @@ function YardComponent({ userData }) {
 
     const refreshYard = () => {
         axios.get("/api/yard").then((res) => {
-            console.log(res);
             if (res && res.data) {
                 const { data } = res.data;
+                data.forEach(yard => {
+                    if (!yard["lag_lat"]) return
+                    yard["position"] = yard["lag_lat"].split(', ')
+                    yard["popupContent"] = yard.address
+                });
                 setYards(data);
             }
         });
     }
 
-    const handleClickMapCb = () => {
-
-    }
 
     return (
         <>
-            <div style={{ marginTop: '10px', display: "flex" }}>
-                <Map handleClickMapCb={handleClickMapCb}></Map>
-                <div className="top-yards">
-                    <div className="heading flex flex-sb">
-                        <h2>Top Vựa Ve Chai</h2>
-                        <p style={{ fontSize: '1rem' }}>Xem thêm</p>
-                    </div>
-                    <div className='yards'>
-                        <div className='nameshop'>
-                            <BsPinMapFill className='yard-icon'></BsPinMapFill>
-                            <h4>Vựa Ve Chai</h4>
-                        </div>
-                        <p>162 Đ. Hiệp Thành 13, Hiệp Thành, Quận 12, Thành phố Hồ Chí Minh</p>
-                    </div>
-
-                </div>
+            <div style={{ marginTop: '30px', display: "flex" }}>
+                <Map markerList={yards}></Map>
+                <TopYards yards={yards}></TopYards>
             </div>
         </>
     );

@@ -60,9 +60,10 @@ export default function Dashboard({ userData }) {
             </Head>
             <main>
                 <Layout pages={layoutPages} user={{ fullname, name, email }}>
-                    <h2 style={{padding: "10px", color: "gray"}}>Các Bài Đăng Về Thanh Lý VeChai</h2>
-
-                    <PostDashboard posts={posts} ></PostDashboard>
+                    <h2 className="posttitle" style={{ padding: "10px" }}>Các Bài Đăng Về Thanh Lý VeChai</h2>
+                    <div className="post-content">
+                        <PostDashboard posts={posts} ></PostDashboard>
+                    </div>
                 </Layout>
             </main>
         </>

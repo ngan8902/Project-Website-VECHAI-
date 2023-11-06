@@ -38,8 +38,7 @@ export default function TableScrapYard({ yards = [] }) {
                             {
                                 data.map((yard, index) => {
                                     return (
-
-                                        <tr  key={index}>
+                                        <tr key={index} className="table-yard">
                                             <th scope="row">
                                                 <div>{yard.yards_id}</div>
                                             </th>
@@ -61,6 +60,7 @@ export default function TableScrapYard({ yards = [] }) {
                                             <td>
                                                 <div style={{ width: '200px' }}>{yard.address}</div>
                                             </td>
+        
                                         </tr>
 
                                     )
