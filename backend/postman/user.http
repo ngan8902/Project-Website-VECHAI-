@@ -1,5 +1,5 @@
 ### GET Get customer
-GET  http://localhost:8000/api/customer
+GET  http://localhost:8000/api/customer/getuser
 content-type: application/json
 
 ### POST Create customer

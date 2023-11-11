@@ -108,7 +108,7 @@ class CustomerController {
 
     static getCustomer = async (req, res, next) => {
         try {
-            const results = await RoleModel.getRole()
+            const results = await UserModel.getUserWithRole()
             console.log(results)
             if (!results) throw new Error("Don't have data");
             res.status(200).json({

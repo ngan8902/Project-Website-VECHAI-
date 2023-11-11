@@ -13,7 +13,6 @@ import Layout from '@/components/layout';
 import PostDashboard from "@/components/postDashboard";
 import TopYards from '@/components/topYard';
 import CreatePostPage from '@/components/createPost';
-import User from '@/components/user';
 
 export async function getServerSideProps({ req, res }) {
     const token = req.cookies["vechaitoken"];
@@ -82,7 +81,7 @@ export default function Dashboard({ userData }) {
     );
 }
 
-function BuyerComponent({ userData = [] }) {
+function BuyerComponent({userData = []}) {
     const Map = dynamic(() => import("@/components/Map"), {
         ssr: false,
         loading: () => <p>Loading...</p>,
@@ -90,8 +89,6 @@ function BuyerComponent({ userData = [] }) {
 
     const [posts, setPosts] = useState([]);
     const [yards, setYards] = useState([]);
-    const [user, setUser] = useState([]);
-    const [modal, setModal] = useState(false);
 
     useEffect(() => {
         refreshPosts()
@@ -121,16 +118,8 @@ function BuyerComponent({ userData = [] }) {
             }
         });
     }
-    const toggle = () => setModal(!modal);
 
-    const handleCreatedCB = () => {
-        setModal(false)
-        refreshPosts()
-    }
-
-    const handleClosePost = () => {
-        setModal(false)
-    }
+    
     return (
         <>
             {/* <!-- ======Section======= --> */}
@@ -146,7 +135,6 @@ function BuyerComponent({ userData = [] }) {
                     <div className="nfts">
                         <div className="trending heading flex flex-sb">
                             <h2>Bài đăng về ve chai cần bán</h2>
-                            <p onClick={toggle}>Tạo bài viết</p>
                         </div>
 
                         {/* <!-- ======Categories======= --> */}
@@ -178,21 +166,11 @@ function BuyerComponent({ userData = [] }) {
                 </div>
 
                 {/* <!-- Section Right --> */}
-                <div className="section-right">
-
+                <div className="section-right" style={{marginTop: "8%"}}>
                     <TopYards yards={yards}></TopYards>
-                    <User user={user}></User>
-
                 </div>
             </div>
             {/* <!-- ======End Section======= --> */}
-
-            <Modal isOpen={modal} toggle={toggle}>
-                <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Tạo bài viết mới</span></ModalHeader>
-                <ModalBody>
-                    <CreatePostPage userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreatePostPage>
-                </ModalBody>
-            </Modal>
         </>
     );
 }
@@ -205,13 +183,13 @@ function SalerComponent({ userData = [] }) {
 
     const [posts, setPosts] = useState([]);
     const [yards, setYards] = useState([]);
-    const [user, setUser] = useState([]);
     const [modal, setModal] = useState(false);
 
     useEffect(() => {
         refreshPosts()
         refreshYard()
     }, []);
+
 
     const refreshPosts = () => {
         axios.get("/api/post?limit=5").then((res) => {
@@ -298,7 +276,6 @@ function SalerComponent({ userData = [] }) {
                 <div className="section-right">
 
                     <TopYards yards={yards}></TopYards>
-                    <User user={user}></User>
 
                 </div>
             </div>

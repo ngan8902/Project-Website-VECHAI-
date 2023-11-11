@@ -1,5 +1,8 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
+
+import ProductDetails from "@/pages/dashboard/productdetail";
 
 
 export default function PostDashboard({ posts = [] }) {
@@ -31,7 +34,7 @@ export default function PostDashboard({ posts = [] }) {
 
     return (
         <>
-            <div className="browse">
+            <div className="browse" style={{cursor: "pointer"}}>
                 {
                     data.map((post, index) => {
                         return (
@@ -56,7 +59,7 @@ export default function PostDashboard({ posts = [] }) {
                                         />
                                         <p>{post.fullname}</p>
                                     </div>
-                                    <div className="price" style={{ fontSize: 10 }}>{formatMoney(post.expect_price, 0) || 'Thương lượng'}</div>
+                                    <div className="price" style={{ fontSize: 10 }}>{formatMoney(post.expect_price, 0) || 'Thương lượng'}{' '}/Kg</div>
                                 </div>
                             </div>
                         );

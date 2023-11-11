@@ -105,6 +105,21 @@ button:hover {
 
 }
 
+.btnGia{
+  background: gray;
+  border: 3px solid none;
+  text-align: center;
+  padding: 5px;
+  color: #eeedee;
+  cursor: pointer;
+  width: auto;
+}
+
+.btnGia:hover {
+  background: rgb(251, 63, 76);
+  color: rgb(21, 20, 20);
+}
+
 .btnModal {
   font-size: 1rem;
   padding: 5px;
@@ -583,6 +598,11 @@ body {
   border-radius: 20px;
   display: block;
   margin: 0 auto;
+}
+
+.imgcard{
+  height: 240px;
+  border-radius: 20px;
 }
 
 .author img {

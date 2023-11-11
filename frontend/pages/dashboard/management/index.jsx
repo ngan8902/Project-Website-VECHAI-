@@ -2,13 +2,13 @@ import dynamic from "next/dynamic";
 import Head from "next/head";
 import { useState, useEffect } from "react";
 import _ from "lodash";
-import { Button, Modal, ModalHeader, ModalBody} from 'reactstrap';
+import {Modal, ModalHeader, ModalBody} from 'reactstrap';
 
 import Layout from "@/components/layout";
 import axios from "@/helper/axios.helper";
 import { pages } from "@/utils/contanst";
-import CreateYard from "@/components/createYard"
-import TableScrapYard from "@/components/tableScrapYard"
+import CreateYard from "@/components/createYard";
+import TableScrapYard from "@/components/tableScrapYard";
 
 export async function getServerSideProps({ req, res }) {
     const token = req.cookies["vechaitoken"];
@@ -106,7 +106,6 @@ export default function YardManage({ userData }) {
                             <CreateYard userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreateYard>
                         </ModalBody>
                     </Modal>
-
                 </Layout>
             </main>
         </>

@@ -1,20 +1,20 @@
 import { useState, useEffect } from "react";
 
 
-export default function User({ user = []}) {
-    const [data, setData] = useState(user);
+export default function TopBuyer({ buyer = []}) {
+    const [data, setData] = useState(buyer);
 
     useEffect(() => {
-        setData(user)
+        setData(buyer)
         return () => { }
-    }, [user])
+    }, [buyer])
 
 
     return (
         <>
             <div className="top-creators">
                 <div className="heading ">
-                    <h2>Người dùng</h2>
+                    <h2>Người Thu Mua</h2>
                 </div>
                 {
                     data.map((user, index) => {
