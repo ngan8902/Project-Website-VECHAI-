@@ -2,16 +2,17 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
 
-import ProductDetails from "@/pages/dashboard/productdetail";
 
-
-export default function PostDashboard({ posts = [] }) {
+export default function PostDashboard({ posts = []}) {
     const [data, setData] = useState(posts);
 
     useEffect(() => {
         setData(posts)
         return () => { }
     }, [posts])
+
+
+
 
     function formatMoney(amount, decimalCount = 2, decimal = ".", thousands = ",") {
         try {
@@ -34,7 +35,7 @@ export default function PostDashboard({ posts = [] }) {
 
     return (
         <>
-            <div className="browse" style={{cursor: "pointer"}}>
+            <div className="browse" style={{ cursor: "pointer" }}>
                 {
                     data.map((post, index) => {
                         return (
@@ -47,6 +48,9 @@ export default function PostDashboard({ posts = [] }) {
                                     height={500}
                                 />
                                 <div className="title">{post.name}</div>
+                                <Link href={`/dashboard/productdetail/${post.post_id}`}>
+                                    Xem chi tiết sản phẩm
+                                </Link>
                                 <p className='status'>{post.content}</p>
                                 <div className="details flex flex-sb">
                                     <div className="author flex">

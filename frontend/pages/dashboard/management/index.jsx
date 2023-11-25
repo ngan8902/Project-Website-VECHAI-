@@ -100,7 +100,7 @@ export default function YardManage({ userData }) {
                         <TableScrapYard yards={yards}></TableScrapYard>
                     </div>
 
-                    <Modal isOpen={modal} toggle={toggle}>
+                    <Modal className="model-detail" isOpen={modal} toggle={toggle}>
                         <ModalHeader><span style={{ color: "black", width: '140px', padding: '8px' }}>Thêm Vựa VeChai</span></ModalHeader>
                         <ModalBody>
                             <CreateYard userData={userData} handleCreatedCB={handleCreatedCB} handleClosePost={handleClosePost}></CreateYard>

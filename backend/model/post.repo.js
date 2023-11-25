@@ -9,8 +9,8 @@ class PostModel {
         return new Promise((resolve, reject) => {
             let query = 'SELECT * FROM posts INNER JOIN (select id, fullname, email, phonenumber, address, role_id, image as userImage from users) u ON posts.userId = u.id'
             query = query + ` ORDER BY updatedAt ${sortType}`
-            if(limit) query = query + ` LIMIT ${limit}`
-            if(offset) query = query + ` OFFSET ${offset}`
+            if (limit) query = query + ` LIMIT ${limit}`
+            if (offset) query = query + ` OFFSET ${offset}`
             con.query(query, function (error, results) {
                 if (error) reject(error);
 
@@ -19,13 +19,23 @@ class PostModel {
         })
     }
 
-    static create = async ({userId, name, content, image, expect_price, items, status = 'draft'}) => {
+    static create = async ({ userId, name, content, image, expect_price, items, status = 'draft' }) => {
         return new Promise((resolve, reject) => {
             con.query('INSERT INTO posts SET ?', {
                 userId, name, content, image, expect_price, items, status,
                 createdAt: new Date(), updatedAt: new Date()
             }, function (error, results, fields) {
                 if (error) reject(error)
+                resolve(results)
+            })
+        })
+    }
+
+    static detail = async ({ }) => {
+        return new Promise((resolve, reject) => {
+            con.query(`SELECT * FROM posts WHERE post_id = '${post_id}'`, 
+            function (err, data, fields) {
+                if (err) reject(err)
                 resolve(results)
             })
         })

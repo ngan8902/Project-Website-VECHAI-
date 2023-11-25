@@ -29,6 +29,20 @@ class PostService {
             }
         })
     }
+
+    static detailPost = async ({ userId, name, content, image, expect_price }) => {
+        return axios.post('/api/post/detail', {
+            userId, name, content, image, expect_price
+        }).then((response) => {
+            const { data } = response
+            return data
+        }).catch((err) => {
+            console.log(err)
+            return {
+                err: err.message
+            }
+        })
+    }
 }
 
 module.exports = PostService
