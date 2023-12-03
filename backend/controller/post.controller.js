@@ -45,23 +45,5 @@ class PostController {
         }
     }
 
-    static detailPost = async (req, res) => {
-        try {
-            const result = await PostModel.detail({ ...req.query })
-            if (!result) throw new Error("Can't get detail post");
-            res.status(200).json({
-                message: 'Get detail success!',
-                data: result
-            })
-        }
-        catch (err) {
-            res.status(500).json({
-                code: 500,
-                message: 'Error:::',
-                error: err.message
-            })
-        }
-    }
-
 }
 module.exports = PostController

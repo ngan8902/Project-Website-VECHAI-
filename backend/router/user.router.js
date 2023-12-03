@@ -7,7 +7,7 @@ router.post("/signup", UserController.signUp)
 router.post("/login", UserController.logIn)
 router.post("/getuser", UserController.getUserWithRole)
 
-
+router.get("/getalluser", UserController.getAllUserWithRole)
 router.get("/authen", authentication, UserController.authenCustomer)
 router.get("/getbytoken", authentication, UserController.getUserWithRole)
 

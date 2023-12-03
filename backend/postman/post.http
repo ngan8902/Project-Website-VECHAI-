@@ -16,6 +16,3 @@ content-type: application/json
     "status": "publish"
 }
 
-### GET roles
-GET http://localhost:8000/api/post/detail
-content-type: application/json

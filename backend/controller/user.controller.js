@@ -145,6 +145,11 @@ class CustomerController {
         res.json(result)
     }
 
+    static getAllUserWithRole = async (req, res) => {
+        const result = await UserModel.getAllUserWithRole()
+        res.json(result)
+    }
+
 }
 
 module.exports = CustomerController

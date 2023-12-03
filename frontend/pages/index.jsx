@@ -76,7 +76,7 @@ export default function Home() {
             <h5>Chai Nhựa PVC</h5>
             <p className={styles.gia}>Giá: 18.000/kg </p>
             <div className={styles.cart}>
-              Thêm vào giỏ hàng
+              <Link href='/Login' style={{ color: 'white', textDecoration: 'none' }}> Thêm vào giỏ hàng</Link>
             </div>
           </div>
           <div className={styles.imgSanpham1}>
@@ -88,7 +88,7 @@ export default function Home() {
             <h5>Giấy Viết</h5>
             <p className={styles.gia}>Giá: 18.000/kg </p>
             <div className={styles.cart}>
-              Thêm vào giỏ hàng
+              <Link href='/Login' style={{ color: 'white', textDecoration: 'none' }}> Thêm vào giỏ hàng</Link>
             </div>
           </div>
           <div className={styles.imgSanpham1}>
@@ -100,7 +100,7 @@ export default function Home() {
             <h5>Lon Nước</h5>
             <p className={styles.gia}>Giá: 15.000/kg </p>
             <div className={styles.cart}>
-              Thêm vào giỏ hàng
+              <Link href='/Login' style={{ color: 'white', textDecoration: 'none' }}> Thêm vào giỏ hàng</Link>
             </div>
           </div>
           <div className={styles.imgSanpham1}>
@@ -112,7 +112,7 @@ export default function Home() {
             <h5>Thùng Catton</h5>
             <p className={styles.gia}>Giá: 15.000/kg </p>
             <div className={styles.cart}>
-              Thêm vào giỏ hàng
+              <Link href='/Login' style={{ color: 'white', textDecoration: 'none' }}> Thêm vào giỏ hàng</Link>
             </div>
           </div>
         </div>

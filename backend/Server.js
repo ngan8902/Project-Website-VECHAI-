@@ -1,8 +1,12 @@
 const express = require("express");
+const { createServer } = require('http');
+const { Server } = require('socket.io');
 const cors = require('cors');
 const routes = require("./router");
 const mysqlDb = require('./database/mysql')
 const app = express();
+const server = createServer(app);
+const io = new Server(server,  { cors: { origin: '*' } });
 app.set('port', process.argv[2] || 8000);
 const port = process.env.PORT || app.get('port');
 const bodyParser = require('body-parser')
@@ -34,6 +38,13 @@ app.use("/api", routes);
 
 mysqlDb.connection();
 
-app.listen(port, function () {
+io.on('connection', (socket) => {
+  console.log('a user connected');
+  socket.on('disconnect', () => {
+    console.log('user disconnected');
+  });
+});
+
+server.listen(port, function () {
   console.log(`Example app listening on port ${port}!`);
 });

@@ -59,7 +59,16 @@ class CustomerModel {
                  resolve(results)
              })
          })
-     }
+    }
+
+    static getAllUserWithRole =async () => {
+        return new Promise((resolve, reject) => {
+             con.query("SELECT * FROM users INNER JOIN roles ON users.role_id = roles.role_id ", function(error, results, fields){
+                 if(error) reject(error)
+                 resolve(results)
+             })
+         })
+    }
 
     static initTableToDB = async () => {
         var sql = 'CREATE TABLE IF NOT EXISTS users (id INT NOT NULL AUTO_INCREMENT PRIMARY KEY, role_id INT NOT NULL, email VARCHAR(255) NOT NULL, password VARCHAR(255) NOT NULL, fullname VARCHAR(255) NOT NULL, token VARCHAR(255), phonenumber VARCHAR(255) NOT NULL, address VARCHAR(255) NOT NULL, image VARCHAR(255) NOT NULL, FOREIGN KEY (role_id) REFERENCES roles(role_id)) ';

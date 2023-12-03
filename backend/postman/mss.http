@@ -1,0 +1,18 @@
+### GET Chat
+GET http://localhost:8000/api/chat/getbypost?buyerId=2&salerId=1&postId=1
+content-type: application/json
+
+### GET Chat
+GET http://localhost:8000/api/chat/getbyuser?userId=1&role=saler
+content-type: application/json
+
+### Post createChat
+POST  http://localhost:8000/api/chat/create
+content-type: application/json
+
+{
+   "buyerId": 2 ,
+   "salerId": 1,
+   "postId": 1 ,
+   "content": {"from": 1, "to": 2, "message": "test"}
+}

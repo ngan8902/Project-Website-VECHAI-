@@ -31,16 +31,6 @@ class PostModel {
         })
     }
 
-    static detail = async ({ }) => {
-        return new Promise((resolve, reject) => {
-            con.query(`SELECT * FROM posts WHERE post_id = '${post_id}'`, 
-            function (err, data, fields) {
-                if (err) reject(err)
-                resolve(results)
-            })
-        })
-    }
-
     static initTableToDB = async () => {
         var sql = `CREATE TABLE IF NOT EXISTS posts (
             post_id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,

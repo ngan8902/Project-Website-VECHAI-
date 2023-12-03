@@ -32,22 +32,17 @@ export default function ProductDetail({ userData }) {
     const [layoutPages, setLayoutPages] = useState([]);
     const router = useRouter()
     const { postID } = router.query;
-   
+    // const { namePost} = query.name;
+    const params = useParams()
+    console.log(params)   
 
     useEffect(() => {
         detectAccessPage()
-        refreshPostsDetail()
     }, []);
 
-    const refreshPostsDetail = () => {
-        axios.get('/api/post/detail').then((res) => {
-            console.log(res);
-            if (res && res.data) {
-                const { data } = res.data;
-                setPost(data);
-            }
-        });
-    }
+
+
+    
 
 
     const detectAccessPage = () => {

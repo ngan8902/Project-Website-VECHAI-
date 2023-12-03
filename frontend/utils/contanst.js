@@ -6,6 +6,8 @@ import {
   BsShop,
 } from "react-icons/bs";
 
+import {FaFacebookMessenger} from "react-icons/fa"
+
 const pages = [
   {
     key: "dashboard",
@@ -36,6 +38,12 @@ const pages = [
     name: "Quản lý vựa",
     icon: <BsPencilSquare />,
     href: "/dashboard/management",
+  },
+  {
+    key: "chat",
+    name: "Hộp thoại",
+    icon: <FaFacebookMessenger/>,
+    href: "/dashboard/chatbox",
   },
 ];
 export { pages };
