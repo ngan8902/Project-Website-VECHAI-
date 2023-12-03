@@ -3,7 +3,7 @@ import {
   BsHouseDoorFill,
   BsFillPostcardHeartFill,
   BsPersonLinesFill,
-  BsShop,
+  BsShop, BsChatSquareTextFill 
 } from "react-icons/bs";
 
 const pages = [
@@ -36,6 +36,12 @@ const pages = [
     name: "Quản lý vựa",
     icon: <BsPencilSquare />,
     href: "/dashboard/management",
+  },
+  {
+    key: "chatbox",
+    name: "Chat box",
+    icon: <BsChatSquareTextFill />,
+    href: "/dashboard/chatbox",
   },
 ];
 export { pages };

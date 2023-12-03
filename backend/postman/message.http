@@ -1,0 +1,18 @@
+### GET message
+GET http://localhost:8000/api/message/getbypost?buyerId=2&salerId=1&postId=1
+content-type: application/json
+
+### GET message by users
+GET http://localhost:8000/api/message/getbyuser?userId=1&role=saler
+content-type: application/json
+
+### Post Message
+POST  http://localhost:8000/api/message/create
+content-type: application/json
+
+{
+    "buyerId": 2,
+    "salerId": 1,
+    "postId": 1,
+    "content": { "from": 1, "to": 2, "message": "huy test" }
+}
