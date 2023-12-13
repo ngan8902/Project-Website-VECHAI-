@@ -40,6 +40,20 @@ mysqlDb.connection();
 
 io.on('connection', (socket) => {
   console.log('a user connected');
+  // Code su kien
+  socket.on("sendMessage", (message) => {
+    console.log(message)
+    socket.broadcast.emit("receiveMessage", message)
+    // luu du lieu
+    const { messageId, text, userId, from, to, timestamp} = message
+    MessageModel.updateMessage({
+      messageId: messageId,
+      messageObj: {
+        userId, text, timestamp, from, to
+      }
+    })
+  })
+
   socket.on('disconnect', () => {
     console.log('user disconnected');
   });

@@ -69,10 +69,12 @@ export default function Chatbox({ userData }) {
         // On event::::::
         socketIO.current.on("receiveMessage", (messageObj) => {
             console.log(`Ms:::`, messageObj);
-            const { from, to, message } = messageObj
+            const { from, to, text } = messageObj
+            console.log('TO', to)
+            console.log('ID', userData.id)
             if (to === userData.id) {
                 if (!chatLeftRenderd.current.includes(messageObj.timestamp)) {
-                    addMessage(message, 'left')
+                    addMessage(text, 'left')
                     chatLeftRenderd.current.push(messageObj.timestamp)
                 }
             }
@@ -97,14 +99,15 @@ export default function Chatbox({ userData }) {
 
     const clickSend = () => {
         console.log(socketIO.current)
-        const messObj = {
+        const messageObj = {
             from: userData.id,
             to: chanel.id,
             mess: chatText,
             timestamp: new Date().getTime()
         }
-        socketIO.current.emit('sendMess', messObj);
-        sendMess(chatText, 'right')
+        socketIO.current.emit(`sendMessage`, messageObj);
+        addMessage(chatText, 'right')
+        setChatText('')
     }
 
     const chatWith = (user) => {
@@ -112,20 +115,19 @@ export default function Chatbox({ userData }) {
 
     }
     const addMessage = (message, key) => {
-        console.log(message)
         let child = document.createElement('div');
         if (key === "left") {
-            child.innerHTML = '<div class="row no-gutters"><div class="col-md-4"><div class="chat-bubble chat-bubble--left">' +
+            child.innerHTML = '<div class="row no-gutters"><div class="col-md-3"><div class="chat-bubble chat-bubble--left">' +
                 message +
                 '</div></div></div>';
         } else {
-            child.innerHTML = '<div class="row no-gutters"><div class="col-md-4 offset-md-8"><div class="chat-bubble chat-bubble--right">' +
-                message +
-                '</div></div></div>'
+            child.innerHTML = '<div class="row no-gutters"><div class="col-md-3 offset-md-9"><div class="chat-bubble chat-bubble--right">' +
+                message + '</div></div></div>';
         }
         child = child.firstChild;
         document.getElementById('chatbox').appendChild(child)
     }
+
 
     const triggerGetDataByParam = () => {
         const salerId = searchParams.get('salerId')
@@ -136,39 +138,36 @@ export default function Chatbox({ userData }) {
                 salerId: salerId,
                 postId: postId
             })
-            // getMessageByParams({
-            //     buyerId: userData.id,
-            //     salerId: salerId,
-            //     postId: postId
-            // })
         }
     }
 
     const checkAndCreate = async ({ buyerId, salerId, postId }) => {
-        axios.post(`/api/chat`).then((res) => {
+        axios.post(`/api/chat`, {
+            buyerId, salerId, postId
+        }).then((res) => {
             console.log(res);
             if (res && res.data) {
-                const { data } = res.data;
-                if (data && data[0]) {
-                    setChanel(data[0]);
+                const { data } = res;
+                if (data && data.content) {
+                    data.contentObj = JSON.parse(data.content)
                 }
-
+                setChanel(data);
             }
-        });
+        })
     }
 
-    const getMessageByParams = async ({ buyerId, salerId, postId }) => {
-        axios.get(`/api/chat/getbypost?buyerId=${buyerId}&salerId=${salerId}&postId=${postId}`).then((res) => {
-            console.log(res);
-            if (res && res.data) {
-                const { data } = res.data;
-                if (data && data[0]) {
-                    setChanel(data[0]);
-                }
+    // const getMessageByParams = async ({ buyerId, salerId, postId }) => {
+    //     axios.get(`/api/chat/getbypost?buyerId=${buyerId}&salerId=${salerId}&postId=${postId}`).then((res) => {
+    //         console.log(res);
+    //         if (res && res.data) {
+    //             const { data } = res.data;
+    //             if (data && data[0]) {
+    //                 setChanel(data[0]);
+    //             }
 
-            }
-        });
-    }
+    //         }
+    //     });
+    // }
 
     const getMessageByUser = async ({ userId, role }) => {
         return axios.get(`/api/chat/getbyuser?userId=${userId}&role=${role}`).then((res) => {
@@ -227,41 +226,47 @@ export default function Chatbox({ userData }) {
                                                     <div className="friend-drawer no-gutters friend-drawer--grey">
                                                         <img className="profile-image" src={chanel.post_image} alt="" />
                                                         <div className="text" style={{ marginLeft: '10px' }}>
-                                                           <p>Người bán: {chanel.saler_fullname}</p>
-                                                           <p>Người mua: {chanel.buyer_fullname}</p>
+                                                            <p>Người bán: {chanel.saler_fullname}</p>
+                                                            <p>Người mua: {chanel.buyer_fullname}</p>
 
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div className="chat-panel">
-                                                    <div className="row no-gutters">
-                                                        <div className="col-md-3">
-                                                            <div className="chat-bubble chat-bubble--left">
-                                                               
+                                                    <div id="chatbox">
+                                                        {
+                                                            chanel.contentObj && chanel.contentObj.messages.map((msg, index) => {
+                                                                let tpl = ''
+                                                                if (msg && msg.userId === userData.id) {
+                                                                    tpl = <div className="row no-gutters" key={index}><div className="col-md-3 offset-md-9"><div className="chat-bubble chat-bubble--right"> {msg.text} </div></div></div>
+                                                                } else {
+                                                                    tpl = <div className="row no-gutters" key={index}><div className="col-md-3"><div className="chat-bubble chat-bubble--left"> {msg.text} </div></div></div>
+                                                                }
+                                                                return tpl
+                                                            })
+                                                        }
+                                                    </div>
+                                                        <div className="row">
+                                                            <div className="col-12">
+                                                                <div className="chat-box-tray">
+                                                                    <FaSmileBeam />
+                                                                    <input
+                                                                        type="text"
+                                                                        placeholder="Nhập tin nhắn..."
+                                                                        value={chatText}
+                                                                        onChange={(e) => { setChatText(e.target.value) }}
+                                                                    />
+                                                                    <FaPaperPlane onClick={clickSend} />
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div className="row">
-                                                        <div className="col-12">
-                                                            <div className="chat-box-tray">
-                                                                <FaSmileBeam />
-                                                                <input
-                                                                    type="text"
-                                                                    placeholder="Nhập tin nhắn..."
-                                                                    value={chatText}
-                                                                    onChange={(e) => { setChatText(e.target.value) }}
-                                                                />
-                                                                <FaPaperPlane onClick={clickSend} />
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </> : <p></p>
+                                                </> : <p></p>
                                     }
+                                            </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                 </Layout>
             </main>
         </>

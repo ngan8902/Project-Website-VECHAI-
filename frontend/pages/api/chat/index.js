@@ -1,11 +1,9 @@
-import { createdMess } from '@/services/chat.service'
+import { createdMess } from '@/services/message.service'
 
 export default async function handler(req, res) {
-    if (req.method === 'POST') {
-        const data = await createdMess(req.body)
-        if(data.err) {
-            res.status(400).json(data)
-        }
-        res.status(200).json(data)
+    if(req.method === 'POST') {
+        const response = await createdMess(req.body)
+        if(!response && !response.data) return res.status(400).json(data)
+        res.status(200).json(response.data)
     } 
 }
