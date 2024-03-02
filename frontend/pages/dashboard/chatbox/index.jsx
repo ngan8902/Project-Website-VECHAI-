@@ -64,26 +64,30 @@ export default function Chatbox({ userData }) {
     const [filterUser, setFilterUser] = useState([]);
 
     useEffect(() => {
-        socketIO.current = io("ws://localhost:8000");
-        triggerLayout();
-        // On event::::::
-        socketIO.current.on("receiveMessage", (messageObj) => {
-            console.log(`Ms:::`, messageObj);
-            const { from, to, text } = messageObj
-            console.log('TO', to)
-            console.log('ID', userData.id)
-            if (to === userData.id) {
-                if (!chatLeftRenderd.current.includes(messageObj.timestamp)) {
-                    addMessage(text, 'left')
-                    chatLeftRenderd.current.push(messageObj.timestamp)
+        setTimeout(() => {
+            socketIO.current = io("ws://localhost:8000");
+            triggerLayout();
+            // On event::::::
+            socketIO.current.on("receiveMessage", (messageObj) => {
+                console.log(`Ms:::`, messageObj);
+                const { from, to, text } = messageObj
+                console.log('TO', to)
+                console.log('ID', userData.id)
+                if (to === userData.id) {
+                    if (!chatLeftRenderd.current.includes(messageObj.timestamp)) {
+                        addMessage(text, 'left')
+                        chatLeftRenderd.current.push(messageObj.timestamp)
+                    }
                 }
-            }
-        });
-        console.log(userData)
-        getMessageByUser({ userId: userData.id, role: userData.name }).then(() => {
-            // Check Query params
-            triggerGetDataByParam()
-        })
+            });
+            console.log(userData)
+            getMessageByUser({ userId: userData.id, role: userData.name }).then(() => {
+                // Check Query params
+                triggerGetDataByParam()
+            })
+        }, 1000);
+
+       
 
     }, []);
 
