@@ -1,4 +1,4 @@
-### ĐỒ ÁN HỌC TẬP VỀ NODEJS VÀ NESTJS - WEBSITE THU MUA VECHAI
+### ĐỒ ÁN HỌC TẬP VỀ NODEJS VÀ NEXTJS - WEBSITE THU MUA VECHAI
 --------
 ### THỰC HIỆN BỞI: BÍCH NGÂN
 --------
